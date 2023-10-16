@@ -1,0 +1,58 @@
+import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import { getUserInfo, removeUserInfo } from "@/helpers/authHelper";
+const { Header: AntHeader } = Layout;
+
+const Header = () => {
+  const router = useRouter();
+
+  const logOut = () => {
+    removeUserInfo("accessToken");
+    router.push("/login");
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "0",
+      label: (
+        <Button onClick={logOut} type="text" danger>
+          Logout
+        </Button>
+      ),
+    },
+  ];
+  const { role, service } = getUserInfo() as any;
+  return (
+    <AntHeader
+      style={{
+        background: "#fff",
+      }}
+    >
+      <Row
+        justify="end"
+        align="middle"
+        style={{
+          height: "100%",
+        }}
+      >
+        <p
+          style={{
+            margin: "0px 5px",
+          }}
+        >
+          {role}
+        </p>
+        <Dropdown menu={{ items }}>
+          <a>
+            <Space wrap size={16}>
+              <Avatar size="large" icon={<UserOutlined />} />
+            </Space>
+          </a>
+        </Dropdown>
+      </Row>
+    </AntHeader>
+  );
+};
+
+export default Header;

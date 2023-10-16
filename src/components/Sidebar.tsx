@@ -4,15 +4,15 @@ import { useState } from "react";
 import { Layout, Menu } from "antd";
 
 import { sidebarItems } from "@/constants/sidebarItems";
-import { USER_ROLE, ADMIN_SERVICE } from "@/constants/role";
+
+import { getUserInfo } from "@/helpers/authHelper";
 
 const { Sider } = Layout;
 
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
-  const role = USER_ROLE.CLIENT;
-  const service = ADMIN_SERVICE.CONTENT;
+  const { role, service } = getUserInfo() as any;
 
   return (
     <Sider
@@ -35,10 +35,11 @@ const SideBar = () => {
           fontSize: "2rem",
           textAlign: "center",
           fontWeight: "bold",
-          marginBottom: "1rem",
+          marginBottom: ".5rem",
+          padding: "10px 0px",
         }}
       >
-        Laundry-Service
+        UMS
       </div>
       <Menu
         theme="dark"

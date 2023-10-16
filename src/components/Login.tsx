@@ -1,18 +1,18 @@
 "use client";
 import { Button, Col, Input, Row, message } from "antd";
-import loginImage from "../../assets/login-image.png";
+// import loginImage from "../../assets/login-image.png";
 import Image from "next/image";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
-import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schemas/login";
 import Form from "./Forms/Form";
 import FormInput from "./Forms/FormInput";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { storeUserInfo } from "@/helpers/authHelper";
 
 type FormValues = {
-  id: string;
+  email: string;
   password: string;
 };
 
@@ -31,7 +31,7 @@ const LoginPage = () => {
         message.success("User logged in successfully!");
       }
       storeUserInfo({ accessToken: res?.accessToken });
-      // console.log(res);
+      console.log(res);
     } catch (err: any) {
       console.error(err.message);
     }
@@ -46,7 +46,7 @@ const LoginPage = () => {
       }}
     >
       <Col sm={12} md={16} lg={10}>
-        <Image src={loginImage} width={500} alt="login image" />
+        <Image src={""} width={500} alt="login image" />
       </Col>
       <Col sm={12} md={8} lg={8}>
         <h1
@@ -60,10 +60,10 @@ const LoginPage = () => {
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
               <FormInput
-                name="id"
-                type="text"
+                name="email"
+                type="email"
                 size="large"
-                label="User Id"
+                label="User Email"
                 required
               />
             </div>

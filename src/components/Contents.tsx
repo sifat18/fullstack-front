@@ -1,11 +1,10 @@
 "use client";
 import { Layout } from "antd";
-import BreadCrumb from "./BreadCrumb";
+import Header from "./Header";
 
 const { Content } = Layout;
 
 const Contents = ({ children }: { children: React.ReactNode }) => {
-  const base = "admin";
   return (
     <Content
       style={{
@@ -13,19 +12,15 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
         color: "black",
       }}
     >
-      <BreadCrumb
-        items={[
-          {
-            label: `${base}`,
-            link: `/${base}`,
-          },
-          {
-            label: "client",
-            link: `/${base}/client`,
-          },
-        ]}
-      />
-      {children}
+      <Header />
+
+      <div
+        style={{
+          padding: "10px",
+        }}
+      >
+        {children}
+      </div>
     </Content>
   );
 };
