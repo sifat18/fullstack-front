@@ -33,13 +33,15 @@ const AdminPage = () => {
   const columns = [
     {
       title: "Id",
-      dataIndex: "facultyId",
+      dataIndex: "_id",
       sorter: true,
     },
     {
       title: "Name",
-      render: function (data: Record<string, string>) {
-        const fullName = `${data?.firstName} ${data?.middleName} ${data?.lastName}`;
+      render: function (data: {
+        name: { firstName: string; lastName: string };
+      }) {
+        const fullName = `${data?.name?.firstName}  ${data?.name?.lastName}`;
         return <>{fullName}</>;
       },
     },
@@ -48,16 +50,10 @@ const AdminPage = () => {
       dataIndex: "email",
     },
     {
-      title: "Department",
-      dataIndex: "academicDepartment",
-      render: function (data: any) {
-        return <>{data?.title}</>;
-      },
+      title: "Management",
+      dataIndex: "service",
     },
-    {
-      title: "Designation",
-      dataIndex: "designation",
-    },
+
     {
       title: "Created at",
       dataIndex: "createdAt",
@@ -68,7 +64,7 @@ const AdminPage = () => {
     },
     {
       title: "Contact no.",
-      dataIndex: "contactNo",
+      dataIndex: "phoneNumber",
     },
     {
       title: "Action",
@@ -76,12 +72,12 @@ const AdminPage = () => {
       render: function (data: any) {
         return (
           <>
-            <Link href={`/admin/manage-faculty/details/${data.id}`}>
+            {/* <Link href={`/super-admin/manage-admin/details/${data.id}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
-            </Link>
-            <Link href={`/admin/manage-faculty/edit/${data.id}`}>
+            </Link> */}
+            <Link href={`/super-admin/manage-admin/edit/${data.id}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -122,8 +118,8 @@ const AdminPage = () => {
       <BreadCrumb
         items={[
           {
-            label: "admin",
-            link: "/admin",
+            label: "super-admin/all-admin",
+            link: "/super-admin",
           },
         ]}
       />
@@ -132,6 +128,7 @@ const AdminPage = () => {
         loading={isLoading}
         columns={columns}
         dataSource={faculties}
+        showPagination={false}
       />
     </div>
   );
