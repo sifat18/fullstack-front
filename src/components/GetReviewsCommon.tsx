@@ -9,14 +9,7 @@ import { Button, Col, Input, Modal, Row, message } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { useDebounced } from "@/redux/hooks";
-import {
-  useDeleteServiceMutation,
-  useServicesQuery,
-  useUpdateServiceMutation,
-} from "@/redux/api/serviceApi";
 import AnTable from "@/components/AnTable";
-import ActionBar from "@/components/Forms/ActionBar";
 import { getUserInfo } from "@/helpers/authHelper";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
@@ -29,40 +22,24 @@ import {
   useOrdersQuery,
   useUpdateOrderMutation,
 } from "@/redux/api/adminApi";
+import {
+  useDeleteReviewMutation,
+  useReviewsQuery,
+  useUpdateReviewMutation,
+} from "@/redux/api/userApi";
 
-const GetOrdersCommon = () => {
-  const [updateOrder] = useUpdateOrderMutation();
-  const [deleteOrder] = useDeleteOrderMutation();
+const GetReviewsCommon = () => {
+  const [updateReview] = useUpdateReviewMutation();
+  const [deleteReview] = useDeleteReviewMutation();
 
   const query: Record<string, any> = {};
   const { role } = getUserInfo() as any;
 
-  const [page, setPage] = useState<number>(1);
-  const [size, setSize] = useState<number>(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleData, setSingleData] = useState({});
-  query["limit"] = size;
-  query["page"] = page;
-  query["sortBy"] = sortBy;
-  query["sortOrder"] = sortOrder;
-  // query["searchTerm"] = searchTerm;
+  const { data, isLoading } = useReviewsQuery({});
 
-  const debouncedTerm = useDebounced({
-    searchQuery: searchTerm,
-    delay: 600,
-  });
-
-  if (!!debouncedTerm) {
-    query["searchTerm"] = debouncedTerm;
-  }
-  const { data, isLoading } = useOrdersQuery({ ...query });
-
-  const orders = data?.orders;
-  const meta = data?.meta;
+  const reviews = data?.reviews;
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -106,7 +83,18 @@ const GetOrdersCommon = () => {
     },
     {
       title: "Status",
-      dataIndex: "status",
+      render: function (data: any, record: any, index: number) {
+        return <>{data?.services?.status}</>;
+      },
+    },
+    {
+      title: "Review",
+      dataIndex: "message",
+      sorter: true,
+    },
+    {
+      title: "Rating",
+      dataIndex: "rating",
       sorter: true,
     },
 
@@ -123,20 +111,18 @@ const GetOrdersCommon = () => {
       render: function (data: any) {
         return (
           <>
-            {role !== "client" ? (
-              <Button
-                style={{
-                  margin: "0px 5px",
-                }}
-                onClick={() => {
-                  setSingleData(data);
-                  setIsModalOpen(true);
-                }}
-                type="primary"
-              >
-                <EditOutlined />
-              </Button>
-            ) : null}
+            <Button
+              style={{
+                margin: "0px 5px",
+              }}
+              onClick={() => {
+                setSingleData(data);
+                setIsModalOpen(true);
+              }}
+              type="primary"
+            >
+              <EditOutlined />
+            </Button>
             <Button
               onClick={() => {
                 Modal.confirm({
@@ -146,7 +132,7 @@ const GetOrdersCommon = () => {
                     <>
                       <Button
                         onClick={() => {
-                          deleteOrder(data?._id);
+                          deleteReview(data?._id);
                           Modal.destroyAll();
                         }}
                       >
@@ -169,31 +155,14 @@ const GetOrdersCommon = () => {
     },
   ];
 
-  const onPaginationChange = (page: number, pageSize: number) => {
-    setPage(page);
-    setSize(pageSize);
-  };
-  const onTableChange = (pagination: any, filter: any, sorter: any) => {
-    const { order, field } = sorter;
-    setSortBy(field as string);
-    setSortOrder(order === "ascend" ? "asc" : "desc");
-  };
-
-  const resetFilters = () => {
-    setSortBy("");
-    setSortOrder("");
-    setSearchTerm("");
-  };
-
   const onSubmit = async (data: any) => {
-    data.price = parseInt(data.price);
-    data.slots = parseInt(data.slots);
-
+    data.id = (singleData as any)?._id;
+    data.rating = parseInt(data.rating);
     try {
-      const res = await updateOrder(data).unwrap();
+      const res = await updateReview(data).unwrap();
 
       if (res) {
-        message.success("Service updated");
+        message.success("Review updated");
         setIsModalOpen(false);
       } else {
         message.error("Something went wrong");
@@ -203,53 +172,18 @@ const GetOrdersCommon = () => {
     }
   };
   const defaultValues = {
-    status: (singleData as any)?.status,
+    rating: (singleData as any)?.rating,
+    message: (singleData as any)?.message,
     id: (singleData as any)?._id,
   };
   return (
     <div>
-      {/* <BreadCrumb
-        items={[
-          { label: `${base}`, link: `/${base}` },
-          { label: "get-all-service", link: `/${base}/get-all-service` },
-        ]}
-      /> */}
-
-      <ActionBar title="Orders List">
-        <Input
-          type="text"
-          size="large"
-          placeholder="Search..."
-          style={{
-            width: "20%",
-          }}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
-        <div>
-          {(!!sortBy || !!sortOrder || !!searchTerm) && (
-            <Button
-              onClick={resetFilters}
-              type="primary"
-              style={{ margin: "0px 5px" }}
-            >
-              <ReloadOutlined />
-            </Button>
-          )}
-        </div>
-      </ActionBar>
-
       <AnTable
         loading={isLoading}
         columns={columns}
-        dataSource={orders}
-        pageSize={size}
-        totalPages={meta?.count}
+        dataSource={reviews}
         showSizeChanger={true}
-        onPaginationChange={onPaginationChange}
-        onTableChange={onTableChange}
-        showPagination={true}
+        showPagination={false}
       />
 
       <Modal
@@ -301,13 +235,19 @@ const GetOrdersCommon = () => {
                   </Col>
                   <Col span={24} style={{ margin: "10px 0" }}>
                     <FormSelectField
-                      name="status"
-                      label="Status"
+                      name="rating"
+                      label="Rating"
                       options={[
-                        { value: "pending", label: "Pending" },
-                        { value: "approved", label: "Approved" },
+                        { value: "1", label: "1" },
+                        { value: "2", label: "2" },
+                        { value: "3", label: "3" },
+                        { value: "4", label: "4" },
+                        { value: "5", label: "5" },
                       ]}
                     />
+                  </Col>
+                  <Col span={24} style={{ margin: "10px 0" }}>
+                    <FormTextArea rows={3} name="message" label="Status" />
                   </Col>
                 </Row>
               </div>
@@ -338,4 +278,4 @@ const GetOrdersCommon = () => {
   );
 };
 
-export default GetOrdersCommon;
+export default GetReviewsCommon;

@@ -105,7 +105,6 @@ const GetServiceCommon = () => {
                 margin: "0px 5px",
               }}
               onClick={() => {
-                console.log(data);
                 setSingleData(data);
                 setIsModalOpen(true);
               }}

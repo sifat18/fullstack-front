@@ -74,7 +74,6 @@ export interface IReview {
   services: IService;
   client: IUser;
   message: string;
-  date: string;
   rating: number;
   createdAt: string;
   updatedAt: string;

@@ -32,7 +32,7 @@ const LoginPage = () => {
       }
       storeUserInfo({ accessToken: res?.accessToken });
     } catch (err: any) {
-      console.error(err.message);
+      message.error(err.message);
     }
   };
 
