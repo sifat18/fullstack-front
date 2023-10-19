@@ -50,7 +50,7 @@ export default function HeaderPage() {
           mode="horizontal"
         >
           {isLoggedIn() ? (
-            <div>
+            <div style={{ backgroundColor: "black", color: "white" }}>
               <Avatar
                 style={{
                   backgroundColor: "#87d068",
@@ -59,28 +59,32 @@ export default function HeaderPage() {
                 }}
                 icon={<UserOutlined />}
                 onClick={logout}
-              />{" "}
-              <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
+              />
+              {"LogOut "}
+              <Menu.Item
+                style={{}}
+                key="dashboard"
+                icon={<DashboardOutlined />}
+              >
                 <Link href="/profile">Dashboard</Link>
+              </Menu.Item>
+              <Menu.Item key="contact" icon={<PhoneOutlined />}>
+                <Link href="/about">About Us</Link>
               </Menu.Item>
             </div>
           ) : (
-            <div>
+            <div style={{ backgroundColor: "black", color: "white" }}>
               <Menu.Item key="home" icon={<LoginOutlined />}>
                 <Link href="/login">Login</Link>
               </Menu.Item>
               <Menu.Item key="home" icon={<LoginOutlined />}>
                 <Link href="/register">Register</Link>
               </Menu.Item>
-              <Menu.Item key="home" icon={<LoginOutlined />}>
-                <Link href="/register">Register</Link>
+              <Menu.Item key="contact" icon={<PhoneOutlined />}>
+                <Link href="/about">About Us</Link>
               </Menu.Item>
             </div>
           )}
-
-          <Menu.Item key="contact" icon={<PhoneOutlined />}>
-            <Link href="/contact">Contact Us</Link>
-          </Menu.Item>
         </Menu>
       </Header>
     </>

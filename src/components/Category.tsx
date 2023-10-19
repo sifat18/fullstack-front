@@ -5,14 +5,18 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card, Col, Row } from "antd";
+import dry from "../assets/dry.png";
+import iron from "../assets/iron.png";
+import wash from "../assets/wash.png";
+import Image from "next/image";
 
 const { Meta } = Card;
 export default function Category() {
   const reviewStyle1: React.CSSProperties = {
     width: "100%",
     height: "400px",
-    border: "1px solid #9AA497",
-    backgroundColor: "#9AA497",
+    border: "1px solid #E9EAE0",
+    backgroundColor: "#E9EAE0",
     borderRadius: "10px",
     marginBottom: "2rem",
   };
@@ -38,105 +42,79 @@ export default function Category() {
       <h2 style={contentStyle1}>Our Categories</h2>
       <div style={mainDiv1}>
         <div style={reviewStyle1}>
-          <Row style={rowStyle1}>
-            <Col span={6}>
+          <Row align="middle" gutter={[16, 16]} style={{ margin: "2em 0" }}>
+            <Col xs={24} sm={12} md={8}>
               <Card
                 hoverable
-                style={{ width: 300 }}
+                style={{}}
                 cover={
-                  <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  />
+                  <Image
+                    src={dry}
+                    alt=""
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                      // width: 100,
+                    }}
+                  ></Image>
                 }
-                actions={[
-                  <SettingOutlined key="setting" />,
-                  <EditOutlined key="edit" />,
-                  <EllipsisOutlined key="ellipsis" />,
-                ]}
               >
                 <Meta
                   avatar={
                     <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
                   }
-                  title="Card title"
+                  title="Dry Cleaning"
                   description="This is the description"
                 />
               </Card>
             </Col>
 
-            <Col span={6}>
+            <Col xs={24} sm={12} md={8}>
               <Card
                 hoverable
-                style={{ width: 300 }}
+                style={{}}
                 cover={
-                  <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  />
+                  <Image
+                    src={iron}
+                    alt=""
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                      // width: 100,
+                    }}
+                  ></Image>
                 }
-                actions={[
-                  <SettingOutlined key="setting" />,
-                  <EditOutlined key="edit" />,
-                  <EllipsisOutlined key="ellipsis" />,
-                ]}
               >
                 <Meta
                   avatar={
                     <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
                   }
-                  title="Card title"
+                  title="Iron and Fold"
                   description="This is the description"
                 />
               </Card>
             </Col>
-            <Col span={6}>
+            <Col xs={24} sm={12} md={8}>
               <Card
                 hoverable
-                style={{ width: 300 }}
+                style={{}}
                 cover={
-                  <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  />
+                  <Image
+                    src={wash}
+                    alt=""
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                      // width: 100,
+                    }}
+                  ></Image>
                 }
-                actions={[
-                  <SettingOutlined key="setting" />,
-                  <EditOutlined key="edit" />,
-                  <EllipsisOutlined key="ellipsis" />,
-                ]}
               >
                 <Meta
                   avatar={
                     <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
                   }
-                  title="Card title"
-                  description="This is the description"
-                />
-              </Card>
-            </Col>
-
-            <Col span={6}>
-              <Card
-                hoverable
-                style={{ width: 300 }}
-                cover={
-                  <img
-                    alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                  />
-                }
-                actions={[
-                  <SettingOutlined key="setting" />,
-                  <EditOutlined key="edit" />,
-                  <EllipsisOutlined key="ellipsis" />,
-                ]}
-              >
-                <Meta
-                  avatar={
-                    <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                  }
-                  title="Card title"
+                  title="Wash and Fold"
                   description="This is the description"
                 />
               </Card>
