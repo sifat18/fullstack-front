@@ -34,6 +34,14 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["admin"],
     }),
+    createAdmin: build.mutation({
+      query: (data) => ({
+        url: `/admins/create-admin`,
+        method: "POST",
+        data: data,
+      }),
+      invalidatesTags: ["admin"],
+    }),
   }),
 });
 //
@@ -41,4 +49,5 @@ export const {
   useAdminsQuery,
   useUpdateAdminMutation,
   useDeleteAdminMutation,
+  useCreateAdminMutation,
 } = adminApi;
