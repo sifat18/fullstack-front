@@ -1,40 +1,68 @@
 "use client";
-import { Button } from "antd";
+import { Button, Col, Modal, Row, Space, message } from "antd";
 import Link from "next/link";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { useAdminsQuery } from "@/redux/api/adminApi";
+import {
+  useAdminsQuery,
+  useDeleteAdminMutation,
+  useUpdateAdminMutation,
+} from "@/redux/api/adminApi";
 import BreadCrumb from "@/components/BreadCrumb";
 import AnTable from "@/components/AnTable";
+import Form from "@/components/Forms/Form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import FormInput from "@/components/Forms/FormInput";
+import FormSelectField from "@/components/Forms/FormSelectField";
+import { serviceOptions } from "@/constants/role";
 
 const AdminPage = () => {
-  const query: Record<string, any> = {};
+  const [updateAdmin] = useUpdateAdminMutation();
+  const [deleteAdmin] = useDeleteAdminMutation();
 
-  const [page, setPage] = useState<number>(1);
-  const [size, setSize] = useState<number>(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  //   const debouncedSearchTerm = useDebounced({
-  //     searchQuery: searchTerm,
-  //     delay: 600,
-  //   });
-
-  //   if (!!debouncedSearchTerm) {
-  //     query["searchTerm"] = debouncedSearchTerm;
-
+  type FormValues = {
+    email: string;
+    service: string;
+  };
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await updateAdmin(data).unwrap();
+      if (res) {
+        message.success("Admin updated");
+        setIsModalOpen(false);
+      } else {
+        message.error("Something went wrong");
+      }
+    } catch (err: any) {
+      message.error(err.message || "Something went wrong");
+    }
+  };
   const { data, isLoading } = useAdminsQuery({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [singleData, setSingleData] = useState({});
 
-  const faculties = data?.admins;
-  console.log(faculties);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const admins = data?.admins;
 
   const columns = [
     {
       title: "Id",
       dataIndex: "_id",
       sorter: true,
+      render: function (data: any, record: any, index: number) {
+        return <>{index + 1}</>;
+      },
     },
     {
       title: "Name",
@@ -68,27 +96,42 @@ const AdminPage = () => {
     },
     {
       title: "Action",
-      dataIndex: "id",
+      // dataIndex: "id",
       render: function (data: any) {
         return (
           <>
-            {/* <Link href={`/super-admin/manage-admin/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link> */}
-            <Link href={`/super-admin/manage-admin/edit/${data.id}`}>
-              <Button
-                style={{
-                  margin: "0px 5px",
-                }}
-                onClick={() => console.log(data)}
-                type="primary"
-              >
-                <EditOutlined />
-              </Button>
-            </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
+            <Button
+              style={{
+                margin: "0px 5px",
+              }}
+              onClick={() => {
+                console.log(data);
+                setSingleData(data);
+                setIsModalOpen(true);
+              }}
+              type="primary"
+            >
+              <EditOutlined />
+            </Button>
+            <Button
+              onClick={() => {
+                Modal.confirm({
+                  title: "Confirm",
+                  content: "Are you sure? ...",
+                  footer: (_, { CancelBtn }) => (
+                    <>
+                      <Button onClick={() => deleteAdmin(data?._id)}>
+                        Yes
+                      </Button>
+                      <CancelBtn />
+                      {/* <OkBtn /> */}
+                    </>
+                  ),
+                });
+              }}
+              type="primary"
+              danger
+            >
               <DeleteOutlined />
             </Button>
           </>
@@ -96,23 +139,7 @@ const AdminPage = () => {
       },
     },
   ];
-  const onPaginationChange = (page: number, pageSize: number) => {
-    console.log("Page:", page, "PageSize:", pageSize);
-    // setPage(page);
-    // setSize(pageSize);
-  };
-  const onTableChange = (pagination: any, filter: any, sorter: any) => {
-    const { order, field } = sorter;
-    // console.log(order, field);
-    // setSortBy(field as string);
-    // setSortOrder(order === "ascend" ? "asc" : "desc");
-  };
 
-  const resetFilters = () => {
-    // setSortBy("");
-    // setSortOrder("");
-    // setSearchTerm("");
-  };
   return (
     <div>
       <BreadCrumb
@@ -127,9 +154,76 @@ const AdminPage = () => {
       <AnTable
         loading={isLoading}
         columns={columns}
-        dataSource={faculties}
+        dataSource={admins}
         showPagination={false}
       />
+
+      <Modal
+        title="Update Admin"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Row
+          justify={"center"}
+          style={{
+            minHeight: "25vh",
+          }}
+        >
+          <h1
+            style={{
+              margin: "15px 0px",
+            }}
+          >
+            Update {singleData?.name?.firstName}'s data
+          </h1>
+          <div>
+            <Form
+              defaultValues={{ id: singleData?._id, email: singleData?.email }}
+              submitHandler={onSubmit}
+            >
+              <div>
+                <FormInput
+                  name="email"
+                  type="email"
+                  size="large"
+                  label={"Email"}
+                />
+              </div>
+              <div
+                style={{
+                  margin: "15px 0px",
+                }}
+              >
+                <FormSelectField
+                  name="service"
+                  label="service"
+                  options={serviceOptions}
+                />
+              </div>
+
+              <div
+                style={{
+                  marginTop: "3em",
+                  marginLeft: "2em",
+                }}
+              >
+                <Button type="primary" htmlType="submit">
+                  Update
+                </Button>
+                <Button
+                  type="primary"
+                  style={{ marginLeft: "1em" }}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Form>
+          </div>
+          {/* </Col> */}
+        </Row>
+      </Modal>
     </div>
   );
 };
