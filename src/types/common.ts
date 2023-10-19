@@ -2,6 +2,7 @@ export interface IMeta {
   limit: number;
   page: number;
   total: number;
+  count?: number;
 }
 
 export type ResponseSuccessType = {
@@ -56,9 +57,9 @@ export interface IService {
   slots: number;
   description: string;
   status: "active" | "upcoming" | "inactive";
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
 }
 
 export interface IOrder {

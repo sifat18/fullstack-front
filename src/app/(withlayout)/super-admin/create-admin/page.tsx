@@ -9,7 +9,7 @@ import { Button, Col, Row, message } from "antd";
 import React from "react";
 
 function CreateAdmin() {
-  const base = "admin";
+  const base = "super-admin";
   const [createAdmin] = useCreateAdminMutation();
   const onSubmit = async (data: any) => {
     console.log(data);

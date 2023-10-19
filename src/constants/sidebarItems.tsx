@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE, ADMIN_SERVICE } from "./role";
+import { MenuItemType } from "antd/es/menu/hooks/useItems";
 export const sidebarItems = (role: string, service: string) => {
   const defaultSidebarItems: MenuProps["items"] = [
     {
@@ -71,7 +72,7 @@ export const sidebarItems = (role: string, service: string) => {
     },
   ];
 
-  const superAdminSidebarItems: MenuProps["items"] = [
+  const temp: MenuProps["items"] = [
     ...clientAdminSidebarItems,
     ...contentAdminSidebarItems,
     {
@@ -90,7 +91,11 @@ export const sidebarItems = (role: string, service: string) => {
       ],
     },
   ];
-
+  let superAdminSidebarItems = [
+    ...defaultSidebarItems,
+    ...temp.map((item) => (item as MenuItemType)?.label !== "Profile" && item),
+  ];
+  console.log({ superAdminSidebarItems });
   const clientSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {

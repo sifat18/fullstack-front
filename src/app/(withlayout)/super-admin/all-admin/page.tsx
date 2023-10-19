@@ -16,6 +16,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import { serviceOptions } from "@/constants/role";
+import { IAdmin } from "@/types/common";
 
 const AdminPage = () => {
   const [updateAdmin] = useUpdateAdminMutation();
@@ -120,7 +121,12 @@ const AdminPage = () => {
                   content: "Are you sure? ...",
                   footer: (_, { CancelBtn }) => (
                     <>
-                      <Button onClick={() => deleteAdmin(data?._id)}>
+                      <Button
+                        onClick={() => {
+                          deleteAdmin(data?._id);
+                          Modal.destroyAll();
+                        }}
+                      >
                         Yes
                       </Button>
                       <CancelBtn />
@@ -159,7 +165,7 @@ const AdminPage = () => {
       />
 
       <Modal
-        title="Update Admin"
+        title="Update Service"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -175,11 +181,14 @@ const AdminPage = () => {
               margin: "15px 0px",
             }}
           >
-            Update {singleData?.name?.firstName}'s data
+            Update {(singleData as any)?.name} data
           </h1>
           <div>
             <Form
-              defaultValues={{ id: singleData?._id, email: singleData?.email }}
+              defaultValues={{
+                id: (singleData as any)?._id,
+                email: (singleData as IAdmin)?.email,
+              }}
               submitHandler={onSubmit}
             >
               <div>
