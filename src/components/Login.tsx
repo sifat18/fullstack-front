@@ -9,7 +9,7 @@ import { loginSchema } from "@/schemas/login";
 import Form from "./Forms/Form";
 import FormInput from "./Forms/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { storeUserInfo } from "@/helpers/authHelper";
+import { getUserInfo, storeUserInfo } from "@/helpers/authHelper";
 
 type FormValues = {
   email: string;
@@ -19,7 +19,10 @@ type FormValues = {
 const LoginPage = () => {
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
-
+  const { role }: any = getUserInfo();
+  if (role) {
+    router.push("/profile");
+  }
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
