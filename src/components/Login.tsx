@@ -1,6 +1,6 @@
 "use client";
 import { Button, Col, Input, Row, message } from "antd";
-// import loginImage from "../../assets/login-image.png";
+import login from "../assets/login.png";
 import Image from "next/image";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
@@ -20,18 +20,14 @@ const LoginPage = () => {
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
 
-  // console.log(isLoggedIn());
-
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-      // console.log(res);
       if (res?.accessToken) {
         router.push("/profile");
         message.success("User logged in successfully!");
       }
       storeUserInfo({ accessToken: res?.accessToken });
-      console.log(res);
     } catch (err: any) {
       console.error(err.message);
     }
@@ -46,7 +42,7 @@ const LoginPage = () => {
       }}
     >
       <Col sm={12} md={16} lg={10}>
-        <Image src={""} width={500} alt="login image" />
+        <Image src={login} width={500} alt="login image" />
       </Col>
       <Col sm={12} md={8} lg={8}>
         <h1
@@ -80,9 +76,15 @@ const LoginPage = () => {
                 required
               />
             </div>
-            <Button type="primary" htmlType="submit">
-              Login
-            </Button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: "100%", height: "2.5rem" }}
+              >
+                Login
+              </Button>
+            </div>
           </Form>
         </div>
       </Col>

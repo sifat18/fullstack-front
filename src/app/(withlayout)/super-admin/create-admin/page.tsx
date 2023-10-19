@@ -12,7 +12,6 @@ function CreateAdmin() {
   const base = "super-admin";
   const [createAdmin] = useCreateAdminMutation();
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       data.role = "admin";
       const res = await createAdmin(data).unwrap();

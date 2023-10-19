@@ -1,4 +1,4 @@
-import { IAdmin, IMeta, IUser } from "@/types/common";
+import { IAdmin, IMeta, IOrder, IUser } from "@/types/common";
 import { baseApi } from "../baseApi";
 
 export const adminApi = baseApi.injectEndpoints({
@@ -74,6 +74,37 @@ export const adminApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+    orders: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: "/orders",
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: IOrder[], meta: IMeta) => {
+        return {
+          orders: response,
+          meta,
+        };
+      },
+      providesTags: ["order"],
+    }),
+    updateOrder: build.mutation({
+      query: (data) => ({
+        url: `/orders/${data.id}`,
+        method: "PATCH",
+        data: data,
+      }),
+      invalidatesTags: ["order"],
+    }),
+    deleteOrder: build.mutation({
+      query: (id) => ({
+        url: `/orders/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["order"],
+    }),
   }),
 });
 //
@@ -85,4 +116,7 @@ export const {
   useClientsQuery,
   useUpdateClientMutation,
   useDeleteClientMutation,
+  useOrdersQuery,
+  useDeleteOrderMutation,
+  useUpdateOrderMutation,
 } = adminApi;

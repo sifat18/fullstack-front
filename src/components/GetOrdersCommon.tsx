@@ -23,16 +23,16 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import FormTextArea from "@/components/Forms/FormTextArea";
 import { serviceTypeOptions, statusOptions } from "@/constants/role";
+import { IOrder, IService } from "@/types/common";
 import {
-  useClientsQuery,
-  useDeleteClientMutation,
-  useUpdateClientMutation,
+  useDeleteOrderMutation,
+  useOrdersQuery,
+  useUpdateOrderMutation,
 } from "@/redux/api/adminApi";
-import { IUser } from "@/types/common";
 
-const GetClientsCommon = () => {
-  const [updateUser] = useUpdateClientMutation();
-  const [deleteUser] = useDeleteClientMutation();
+const GetOrdersCommon = () => {
+  const [updateOrder] = useUpdateOrderMutation();
+  const [deleteOrder] = useDeleteOrderMutation();
 
   const query: Record<string, any> = {};
   const { role } = getUserInfo() as any;
@@ -59,9 +59,9 @@ const GetClientsCommon = () => {
   if (!!debouncedTerm) {
     query["searchTerm"] = debouncedTerm;
   }
-  const { data, isLoading } = useClientsQuery({ ...query });
+  const { data, isLoading } = useOrdersQuery({ ...query });
 
-  const users = data?.users;
+  const orders = data?.orders;
   const meta = data?.meta;
 
   const handleOk = () => {
@@ -73,28 +73,43 @@ const GetClientsCommon = () => {
   };
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Client Name",
       sorter: true,
       render: function (data: any, record: any, index: number) {
-        return <>{data?.firstName + " " + data?.lastName}</>;
+        return (
+          <>
+            {data?.client?.name?.firstName + " " + data?.client?.name?.lastName}
+          </>
+        );
       },
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "Service Name",
+      render: function (data: any, record: any, index: number) {
+        return <>{data?.services?.name}</>;
+      },
       sorter: true,
     },
     {
-      title: "Contact",
-      dataIndex: "phoneNumber",
+      title: "Service Type",
+      render: function (data: any, record: any, index: number) {
+        return <>{data?.services?.serviceType}</>;
+      },
       sorter: true,
     },
     {
-      title: "Address",
-      dataIndex: "address",
+      title: "Service Price",
+      render: function (data: any, record: any, index: number) {
+        return <>{data?.services?.price}</>;
+      },
       sorter: true,
     },
+    {
+      title: "Status",
+      dataIndex: "status",
+      sorter: true,
+    },
+
     {
       title: "CreatedAt",
       dataIndex: "createdAt",
@@ -129,7 +144,7 @@ const GetClientsCommon = () => {
                     <>
                       <Button
                         onClick={() => {
-                          deleteUser(data?._id);
+                          deleteOrder(data?._id);
                           Modal.destroyAll();
                         }}
                       >
@@ -169,11 +184,14 @@ const GetClientsCommon = () => {
   };
 
   const onSubmit = async (data: any) => {
+    data.price = parseInt(data.price);
+    data.slots = parseInt(data.slots);
+
     try {
-      const res = await updateUser(data).unwrap();
+      const res = await updateOrder(data).unwrap();
 
       if (res) {
-        message.success("User updated");
+        message.success("Service updated");
         setIsModalOpen(false);
       } else {
         message.error("Something went wrong");
@@ -183,13 +201,19 @@ const GetClientsCommon = () => {
     }
   };
   const defaultValues = {
-    phoneNumber: (singleData as IUser)?.phoneNumber,
-    address: (singleData as IUser)?.address,
+    status: (singleData as any)?.status,
     id: (singleData as any)?._id,
   };
   return (
     <div>
-      <ActionBar title="Users List">
+      {/* <BreadCrumb
+        items={[
+          { label: `${base}`, link: `/${base}` },
+          { label: "get-all-service", link: `/${base}/get-all-service` },
+        ]}
+      /> */}
+
+      <ActionBar title="Orders List">
         <Input
           type="text"
           size="large"
@@ -217,7 +241,7 @@ const GetClientsCommon = () => {
       <AnTable
         loading={isLoading}
         columns={columns}
-        dataSource={users}
+        dataSource={orders}
         pageSize={size}
         totalPages={meta?.count}
         showSizeChanger={true}
@@ -227,7 +251,7 @@ const GetClientsCommon = () => {
       />
 
       <Modal
-        title="Update User"
+        title="Update Order Status"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -243,10 +267,7 @@ const GetClientsCommon = () => {
               margin: "15px 0px",
             }}
           >
-            Update{" "}
-            {(singleData as IUser)?.name?.firstName +
-              (singleData as IUser)?.name?.lastName}{" "}
-            data
+            Update {(singleData as IOrder)?.client?.name?.firstName} data
           </h1>
           <div>
             <Form defaultValues={defaultValues} submitHandler={onSubmit}>
@@ -265,20 +286,26 @@ const GetClientsCommon = () => {
                     margin: "5px 0px",
                   }}
                 >
-                  Users information
+                  Order Status Update
                 </p>
                 <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
                   <Col span={24} style={{ margin: "10px 0" }}>
                     <FormInput
-                      name="phoneNumber"
-                      label="Contact No"
+                      name="name"
+                      label="Service name"
                       size="large"
-                      type="number"
+                      value={(singleData as IOrder)?.services?.name}
                     />
                   </Col>
-
                   <Col span={24} style={{ margin: "10px 0" }}>
-                    <FormTextArea rows={3} name="address" label="address" />
+                    <FormSelectField
+                      name="status"
+                      label="Status"
+                      options={[
+                        { value: "pending", label: "Pending" },
+                        { value: "approved", label: "Approved" },
+                      ]}
+                    />
                   </Col>
                 </Row>
               </div>
@@ -309,4 +336,4 @@ const GetClientsCommon = () => {
   );
 };
 
-export default GetClientsCommon;
+export default GetOrdersCommon;

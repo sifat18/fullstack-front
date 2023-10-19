@@ -14,26 +14,16 @@ import { MenuItemType } from "antd/es/menu/hooks/useItems";
 export const sidebarItems = (role: string, service: string) => {
   const defaultSidebarItems: MenuProps["items"] = [
     {
-      label: "Profile",
+      label: <Link href={`/${role}/profile`}>Profile</Link>,
       key: "profile",
       icon: <ProfileOutlined />,
-      children: [
-        {
-          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
-          key: `/${role}/profile`,
-        },
-        {
-          label: <Link href={`/${role}/update-profile`}>Update Info</Link>,
-          key: `/${role}/profile-update`,
-        },
-      ],
     },
   ];
 
   const clientAdminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
-      label: <Link href={`/${role}/manage-client`}>Manage Clients</Link>,
+      label: "Manage Clients",
       icon: <TableOutlined />,
       key: `/${role}/manage-client`,
       children: [
@@ -51,7 +41,7 @@ export const sidebarItems = (role: string, service: string) => {
   const contentAdminSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
-      label: <Link href={`/${role}/manage-services`}>Manage Services</Link>,
+      label: "Manage Services",
       icon: <TableOutlined />,
       key: `/${role}/manage-services`,
       children: [
@@ -76,7 +66,7 @@ export const sidebarItems = (role: string, service: string) => {
     ...clientAdminSidebarItems,
     ...contentAdminSidebarItems,
     {
-      label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
+      label: "Manage Admin",
       icon: <TableOutlined />,
       key: `/${role}/admin`,
       children: [
@@ -93,18 +83,17 @@ export const sidebarItems = (role: string, service: string) => {
   ];
   let superAdminSidebarItems = [
     ...defaultSidebarItems,
-    ...temp.map((item) => (item as MenuItemType)?.label !== "Profile" && item),
+    ...temp.map((item) => (item as MenuItemType)?.key !== "profile" && item),
   ];
-  console.log({ superAdminSidebarItems });
   const clientSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
-      label: <Link href={`/${role}/orders`}>Orders</Link>,
+      label: <Link href={`/${role}/orders`}>My-Orders</Link>,
       icon: <TableOutlined />,
       key: `/${role}/orders`,
     },
     {
-      label: <Link href={`/${role}/reviews`}>Reviews</Link>,
+      label: <Link href={`/${role}/reviews`}>My-Reviews</Link>,
       icon: <ScheduleOutlined />,
       key: `/${role}/reviews`,
     },

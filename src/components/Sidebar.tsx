@@ -45,7 +45,7 @@ const SideBar = () => {
         theme="dark"
         defaultSelectedKeys={["1"]}
         mode="inline"
-        items={sidebarItems(role, service)}
+        items={sidebarItems(role, service) as any}
       />
     </Sider>
   );

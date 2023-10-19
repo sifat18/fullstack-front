@@ -122,7 +122,13 @@ const GetServiceCommon = () => {
                     <>
                       <Button
                         onClick={() => {
-                          deleteService(data?._id);
+                          deleteService(data?._id).then((res) => {
+                            if ((res as any)?.data) {
+                              message.success("Service deleted");
+                            } else {
+                              message.error("The Service is Booked");
+                            }
+                          });
                           Modal.destroyAll();
                         }}
                       >
