@@ -57,6 +57,20 @@ export const serviceApi = baseApi.injectEndpoints({
       },
       providesTags: ["review"],
     }),
+    reviewsForAll: build.query({
+      query: () => {
+        return {
+          url: "/reviews-for-all",
+          method: "GET",
+        };
+      },
+      transformResponse: (response: IReview[]) => {
+        return {
+          reviews: response,
+        };
+      },
+      providesTags: ["review"],
+    }),
     updateReview: build.mutation({
       query: (data) => ({
         url: `/reviews/${data.id}`,
@@ -92,4 +106,5 @@ export const {
   useUpdateReviewMutation,
   useDeleteReviewMutation,
   useCreateOrderMutation,
+  useReviewsForAllQuery,
 } = serviceApi;

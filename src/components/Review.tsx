@@ -3,9 +3,11 @@ import { Col, Divider, Row, Card } from "antd";
 import Image from "next/image";
 import review from "../assets/review2.jpg";
 import test from "../assets/test.png";
+import { useReviewsForAllQuery } from "@/redux/api/userApi";
 
 const { Meta } = Card;
 export default function Review() {
+  const { data } = useReviewsForAllQuery({});
   const reviewStyle: React.CSSProperties = {
     width: "100%",
     height: "400px",
@@ -41,29 +43,39 @@ export default function Review() {
       <h2 style={contentStyle}>User Review</h2>
       <div style={reviewStyle}>
         <Row align="middle" gutter={[16, 16]} style={{ margin: "2em 0" }}>
-          <Col xs={24} sm={12} md={8}>
-            <Card
-              hoverable
-              style={{ margin: "0 2em" }}
-              cover={
-                <Image
-                  src={test}
-                  alt=""
-                  style={{
-                    objectFit: "cover",
-                    height: "200px",
-                    // width: 100,
-                  }}
-                ></Image>
-              }
-            >
-              {" "}
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-          </Col>
+          {data?.reviews?.map((item: any, idx) => (
+            <Col key={idx} xs={24} sm={12} md={8}>
+              <Card
+                hoverable
+                style={{ margin: "0 2em" }}
+                cover={
+                  <Image
+                    src={test}
+                    alt=""
+                    style={{
+                      objectFit: "cover",
+                      height: "200px",
+                      // width: 100,
+                    }}
+                  ></Image>
+                }
+              >
+                {" "}
+                <Meta
+                  title={item?.services?.name}
+                  description={item?.message}
+                />
+                <p>
+                  {" "}
+                  Review By -
+                  {item?.client?.name?.firstName +
+                    " " +
+                    item?.client?.name?.lastName}
+                </p>
+                <p>Rating- {item?.rating}</p>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </div>
     </div>
