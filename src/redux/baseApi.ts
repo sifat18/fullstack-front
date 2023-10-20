@@ -5,7 +5,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
-    baseUrl: "https://laundry-7cy7.onrender.com/api/v1",
+    baseUrl: "https://laundry2-bncs.onrender.com/api/v1",
   }),
   endpoints: () => ({}),
   tagTypes: ["admin", "service", "user", "order", "review"],
