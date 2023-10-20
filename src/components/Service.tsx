@@ -103,35 +103,39 @@ export default function Service() {
                 <p style={{ marginBottom: "1em" }}>
                   Service- {service?.serviceType}
                 </p>
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setSingleData(service);
-                    setIsModalOpen(true);
-                  }}
-                >
-                  Review US
-                </Button>
-                <Button
-                  style={{ marginLeft: "2em" }}
-                  type="primary"
-                  onClick={() => {
-                    // setIsModalOpen(true);
-                    createOrder({
-                      services: (service as any)?._id,
-                      client: _id,
-                      status: "pending",
-                    }).then((res) => {
-                      if ((res as any)?.data) {
-                        message.success("Service Booked");
-                      } else {
-                        message.error("Something went wrong");
-                      }
-                    });
-                  }}
-                >
-                  Book Today
-                </Button>
+                {role ? (
+                  <>
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setSingleData(service);
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      Review US
+                    </Button>
+                    <Button
+                      style={{ marginLeft: "2em" }}
+                      type="primary"
+                      onClick={() => {
+                        // setIsModalOpen(true);
+                        createOrder({
+                          services: (service as any)?._id,
+                          client: _id,
+                          status: "pending",
+                        }).then((res) => {
+                          if ((res as any)?.data) {
+                            message.success("Service Booked");
+                          } else {
+                            message.error("Something went wrong");
+                          }
+                        });
+                      }}
+                    >
+                      Book Today
+                    </Button>
+                  </>
+                ) : null}
               </Card>
             </Col>
           ))}

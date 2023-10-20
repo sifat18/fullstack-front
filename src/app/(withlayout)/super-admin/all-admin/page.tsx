@@ -12,7 +12,6 @@ import {
 import BreadCrumb from "@/components/BreadCrumb";
 import AnTable from "@/components/AnTable";
 import Form from "@/components/Forms/Form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import { serviceOptions } from "@/constants/role";
@@ -71,7 +70,7 @@ const AdminPage = () => {
         name: { firstName: string; lastName: string };
       }) {
         const fullName = `${data?.name?.firstName}  ${data?.name?.lastName}`;
-        return <>{fullName}</>;
+        return <>{data?.name?.firstName + " " + data?.name?.lastName}</>;
       },
     },
     {
@@ -97,8 +96,7 @@ const AdminPage = () => {
     },
     {
       title: "Action",
-      // dataIndex: "id",
-      render: function (data: any) {
+      render: function (data: any, record: any, index: number) {
         return (
           <>
             <Button
@@ -106,7 +104,7 @@ const AdminPage = () => {
                 margin: "0px 5px",
               }}
               onClick={() => {
-                setSingleData(data);
+                setSingleData(record);
                 setIsModalOpen(true);
               }}
               type="primary"
@@ -180,9 +178,9 @@ const AdminPage = () => {
               margin: "15px 0px",
             }}
           >
-            Update {(singleData as any)?.name} data
+            Update {(singleData as any)?.name?.firstName} data
           </h1>
-          <div>
+          <div style={{ width: "100%" }}>
             <Form
               defaultValues={{
                 id: (singleData as any)?._id,
@@ -191,41 +189,43 @@ const AdminPage = () => {
               submitHandler={onSubmit}
             >
               <div>
-                <FormInput
-                  name="email"
-                  type="email"
-                  size="large"
-                  label={"Email"}
-                />
-              </div>
-              <div
-                style={{
-                  margin: "15px 0px",
-                }}
-              >
-                <FormSelectField
-                  name="service"
-                  label="service"
-                  options={serviceOptions}
-                />
-              </div>
-
-              <div
-                style={{
-                  marginTop: "3em",
-                  marginLeft: "2em",
-                }}
-              >
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
-                <Button
-                  type="primary"
-                  style={{ marginLeft: "1em" }}
-                  onClick={() => setIsModalOpen(false)}
+                <div style={{ width: "100%" }}>
+                  <FormInput
+                    name="email"
+                    type="email"
+                    size="large"
+                    label={"Email"}
+                  />
+                </div>
+                <div
+                  style={{
+                    margin: "15px 0px",
+                  }}
                 >
-                  Cancel
-                </Button>
+                  <FormSelectField
+                    name="service"
+                    label="service"
+                    options={serviceOptions}
+                  />
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "3em",
+                    marginLeft: "2em",
+                  }}
+                >
+                  <Button type="primary" htmlType="submit">
+                    Update
+                  </Button>
+                  <Button
+                    type="primary"
+                    style={{ marginLeft: "1em" }}
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
             </Form>
           </div>
