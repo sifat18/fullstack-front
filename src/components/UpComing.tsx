@@ -5,20 +5,34 @@ import { Card } from "antd";
 import Image from "next/image";
 import { Col, Divider, Row } from "antd";
 import { useServicesQuery } from "@/redux/api/serviceApi";
+import Title from "antd/es/typography/Title";
 const { Meta } = Card;
 export default function UpComingService() {
   const { data, isLoading } = useServicesQuery({});
 
   const contentStyle: React.CSSProperties = {
-    color: "black",
+    color: "#00334C",
+    fontSize: "4rem",
+    fontFamily: "Rasa,serif",
+    fontWeight: "500",
+    wordWrap: "break-word",
     textAlign: "center",
-    marginTop: "4rem",
-    fontSize: "50px",
   };
 
   return (
-    <div style={{ marginRight: "8px" }}>
-      <h2 style={contentStyle}>UP Coming Service</h2>
+    <div style={{ margin: "5em" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          color: "#21B7E2",
+          fontSize: "1.2rem",
+          fontFamily: "Grandstander, cursive",
+          marginTop: "2em",
+        }}
+      >
+        New Arrivals
+      </h2>
+      <h2 style={contentStyle}>Up Coming Services</h2>
 
       <Row align="middle" gutter={[16, 16]}>
         {data?.services
@@ -27,7 +41,7 @@ export default function UpComingService() {
             <Col key={idx} xs={24} sm={12} md={8}>
               <Card
                 hoverable
-                style={{ margin: "0 2em" }}
+                style={{ margin: "0 auto", maxWidth: "20rem", padding: "3em" }}
                 cover={
                   <Image
                     src={upcoming}
@@ -42,9 +56,30 @@ export default function UpComingService() {
               >
                 {" "}
                 <Meta
-                  title={service?.name}
-                  description={service?.description?.slice(0.5)}
+                  title={
+                    <Title
+                      style={{
+                        fontFamily: "Grandstander, cursive",
+                        fontSize: "1.2rem",
+                        color: "#21B7E2",
+                      }}
+                      level={2}
+                    >
+                      {service?.name}
+                    </Title>
+                  }
+                  // description={service?.description?.slice(0.5)}
                 />
+                <p
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.7rem",
+                    color: "#35353F",
+                    fontWeight: "500",
+                  }}
+                >
+                  {service?.description?.slice(0.5)}
+                </p>
               </Card>
             </Col>
           ))}
