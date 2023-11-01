@@ -155,6 +155,7 @@ const Service = () => {
                 {role ? (
                   <>
                     <Button
+                      className="extra"
                       // style={{ backgroundColor: "#00334C" }}
                       onClick={() => {
                         setSingleData(service);
@@ -166,6 +167,7 @@ const Service = () => {
                     <Button
                       style={{ marginLeft: "2em" }}
                       type="primary"
+                      className="extra"
                       onClick={() => {
                         // setIsModalOpen(true);
                         createOrder({
@@ -295,7 +297,7 @@ const Service = () => {
                 style={{
                   // marginTop: "3em",
                   // marginLeft: "2em",
-                  margin: "3em 0 0 22em",
+                  margin: "3em 0 0 21em",
                 }}
               >
                 <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
