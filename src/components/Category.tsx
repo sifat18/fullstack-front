@@ -1,127 +1,98 @@
-"use client";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Avatar, Card, Col, Row } from "antd";
+import React from "react";
 import dry from "../assets/dry.png";
 import iron from "../assets/iron.png";
 import wash from "../assets/wash.png";
+import { Card, Col, Row } from "antd";
 import Image from "next/image";
-
-const { Meta } = Card;
-export default function Category() {
-  const reviewStyle1: React.CSSProperties = {
-    width: "100%",
-    height: "400px",
-    border: "1px solid #E9EAE0",
-    backgroundColor: "#E9EAE0",
-    borderRadius: "10px",
-    marginBottom: "2rem",
-  };
-  const mainDiv1 = {
-    paddingLeft: "5rem",
-    paddingRight: "5rem",
-  };
-
-  const contentStyle1: React.CSSProperties = {
-    color: "black",
-    textAlign: "center",
-    marginTop: "4rem",
-    fontSize: "50px",
-    marginBottom: "4rem",
-  };
-  const rowStyle1 = {
-    marginTop: "1rem",
-    paddingLeft: "15rem",
-    paddingRight: "5rem",
-  };
+import Meta from "antd/es/card/Meta";
+import Title from "antd/es/typography/Title";
+const Category = () => {
+  const data = [
+    { name: "Dry Cleaning", img: dry },
+    { name: "Iron and Fold", img: iron },
+    { name: "Wash and Fold", img: wash },
+  ];
   return (
-    <>
-      <h2 style={contentStyle1}>Our Categories</h2>
-      <div style={mainDiv1}>
-        <div style={reviewStyle1}>
-          <Row align="middle" gutter={[16, 16]} style={{ margin: "2em 0" }}>
-            <Col xs={24} sm={12} md={8}>
-              <Card
-                hoverable
-                style={{}}
-                cover={
-                  <Image
-                    src={dry}
-                    alt=""
-                    style={{
-                      objectFit: "cover",
-                      height: "200px",
-                      // width: 100,
-                    }}
-                  ></Image>
-                }
-              >
-                <Meta
-                  avatar={
-                    <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                  }
-                  title="Dry Cleaning"
-                  description="This is the description"
-                />
-              </Card>
-            </Col>
+    <div
+      style={{
+        // maxWidth: "100vw",
+        // paddingTop: "5em",
+        // paddingBottom: "5em",
+        margin: "5em 5em",
+      }}
+    >
+      <p
+        style={{
+          color: "#21B7E2",
+          fontSize: "1.2rem",
+          fontFamily: "Grandstander,cursive",
+          fontWeight: "600",
+          textAlign: "center",
 
-            <Col xs={24} sm={12} md={8}>
-              <Card
-                hoverable
-                style={{}}
-                cover={
-                  <Image
-                    src={iron}
-                    alt=""
-                    style={{
-                      objectFit: "cover",
-                      height: "200px",
-                      // width: 100,
-                    }}
-                  ></Image>
-                }
-              >
-                <Meta
-                  avatar={
-                    <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                  }
-                  title="Iron and Fold"
-                  description="This is the description"
-                />
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} md={8}>
-              <Card
-                hoverable
-                style={{}}
-                cover={
-                  <Image
-                    src={wash}
-                    alt=""
-                    style={{
-                      objectFit: "cover",
-                      height: "200px",
-                      // width: 100,
-                    }}
-                  ></Image>
-                }
-              >
-                <Meta
-                  avatar={
-                    <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />
-                  }
-                  title="Wash and Fold"
-                  description="This is the description"
-                />
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </>
+          textTransform: "uppercase",
+          wordWrap: "break-word",
+        }}
+      >
+        Explore
+      </p>
+      <h2
+        style={{
+          color: "#263238",
+          fontSize: "3rem",
+          fontFamily: "Inter,sans-serif",
+          fontWeight: "700",
+          wordWrap: "break-word",
+          textAlign: "center",
+          margin: "1em 0",
+        }}
+      >
+        Our Services For you
+      </h2>
+      <Row align="middle" gutter={[16, 16]}>
+        {data?.map((service, idx) => (
+          <Col key={idx} xs={24} sm={12} md={8}>
+            <Card
+              hoverable
+              style={{
+                margin: "0 auto",
+                maxWidth: "17rem",
+                textAlign: "center",
+              }}
+              // title={
+
+              // }
+            >
+              <>
+                <Title
+                  style={{
+                    color: "#263238",
+                    fontSize: "1.8rem",
+                    fontFamily: "Rasa, serif",
+                    fontWeight: 500,
+                    textAlign: "center",
+                    margin: "0.5em 0",
+                  }}
+                  level={2}
+                >
+                  {service?.name}
+                </Title>
+              </>
+              <Image
+                src={service?.img}
+                alt=""
+                style={{
+                  objectFit: "cover",
+                  height: 200,
+                  width: 220,
+                  marginTop: "1em",
+                }}
+              ></Image>{" "}
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
-}
+};
+
+export default Category;

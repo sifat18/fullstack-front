@@ -54,6 +54,23 @@ const HeaderPage = () => {
         <Link href={"/"}>
           <li>Contact</li>
         </Link>
+        {role ? (
+          <Link href={"/profile"}>
+            <li>Dashboard</li>
+          </Link>
+        ) : null}
+        {role ? (
+          <li onClick={logout}>Logout</li>
+        ) : (
+          <Link href={"/login"}>
+            <li>Login</li>
+          </Link>
+        )}
+        {!role ? (
+          <Link href={"/register"}>
+            <li>Register</li>
+          </Link>
+        ) : null}
       </ul>
       <div className="menu-button" onClick={toggleMenu}>
         &#9776;

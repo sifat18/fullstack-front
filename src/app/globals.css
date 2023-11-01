@@ -186,6 +186,7 @@ a {
 background-color: #489FB5;
 color: white;
 padding: 0.2em 0;
+cursor: pointer;
   }
   .menu-button {
     display: block;
