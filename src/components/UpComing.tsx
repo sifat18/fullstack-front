@@ -62,6 +62,7 @@ export default function UpComingService() {
                         fontFamily: "Grandstander, cursive",
                         fontSize: "1.2rem",
                         color: "#21B7E2",
+                        textAlign: "left",
                       }}
                       level={2}
                     >
@@ -76,6 +77,7 @@ export default function UpComingService() {
                     fontSize: "0.7rem",
                     color: "#35353F",
                     fontWeight: "500",
+                    textAlign: "left",
                   }}
                 >
                   {service?.description?.slice(0.5)}
