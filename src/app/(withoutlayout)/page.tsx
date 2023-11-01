@@ -10,6 +10,7 @@ import UpComingService from "@/components/UpComing";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import Steps from "@/components/Steps";
+import LearnMore from "@/components/LearnMore";
 const Home = () => {
   return (
     <div>
@@ -18,6 +19,7 @@ const Home = () => {
       <Service />
       <Steps />
       <UpComingService />
+      <LearnMore />
       <Review />
       <Category></Category>
     </div>

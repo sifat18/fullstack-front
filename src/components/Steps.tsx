@@ -42,7 +42,7 @@ const Steps = () => {
       <h2
         style={{
           color: "#263238",
-          fontSize: "2rem",
+          fontSize: "3rem",
           fontFamily: "Inter,sans-serif",
           fontWeight: "700",
           wordWrap: "break-word",

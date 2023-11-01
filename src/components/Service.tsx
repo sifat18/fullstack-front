@@ -28,6 +28,7 @@ const Service = () => {
     fontWeight: "500",
     wordWrap: "break-word",
     textAlign: "center",
+    margin: "0.4em 0",
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);

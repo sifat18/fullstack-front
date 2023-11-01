@@ -17,6 +17,7 @@ export default function UpComingService() {
     fontWeight: "500",
     wordWrap: "break-word",
     textAlign: "center",
+    margin: "0.4em 0",
   };
 
   return (

@@ -442,6 +442,15 @@ margin-top: -1em;
   text-decoration: none;
   
 }
+
+.learn{
+  background: #D0F6FF;
+  max-Height: 22rem;
+  padding-top: 1em;
+  padding-bottom: 5em;
+  margin: 15em 5em;
+  border-radius: 5rem;
+}
 @media (max-width: 768px) {
   .imghero {
 display: none  
@@ -450,5 +459,13 @@ display: none
   text-align: center;
  margin: 0 0 1em 2em; 
   
+}
+.learn{
+  max-Height: 50rem;
+  max-width: 50rem;
+  margin: 15em 1em;
+  padding: 2em;
+
+
 }
 }
