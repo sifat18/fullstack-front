@@ -16,23 +16,20 @@ import {
   useCreateOrderMutation,
   useCreateReviewMutation,
 } from "@/redux/api/userApi";
+import Title from "antd/es/typography/Title";
 const { Meta } = Card;
 const Service = () => {
   const { role, _id } = getUserInfo() as any;
 
   const contentStyle: React.CSSProperties = {
-    color: "black",
+    color: "#00334C",
+    fontSize: "4rem",
+    fontFamily: "Rasa,serif",
+    fontWeight: "500",
+    wordWrap: "break-word",
     textAlign: "center",
-    marginTop: "1rem",
-    fontSize: "50px",
   };
 
-  const rowStyle = {
-    marginTop: "4rem",
-    paddingLeft: "15rem",
-    paddingRight: "5rem",
-    marginBottom: "4rem",
-  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [singleData, setSingleData] = useState({});
   const handleOk = () => {
@@ -62,13 +59,20 @@ const Service = () => {
     }
   };
   return (
-    <div style={{ marginRight: "8px" }}>
-      <Image
-        src={""}
-        alt=""
-        style={{ marginLeft: "48rem", marginTop: "3rem" }}
-      ></Image>
-      <h2 style={contentStyle}>Available Service</h2>
+    <div style={{ margin: "5em" }}>
+      <Image src={""} alt="" style={{}}></Image>
+      <h2
+        style={{
+          textAlign: "center",
+          color: "#21B7E2",
+          fontSize: "1.2rem",
+          fontFamily: "Grandstander, cursive",
+          marginTop: "2em",
+        }}
+      >
+        Services
+      </h2>
+      <h2 style={contentStyle}>Services & Packages</h2>
 
       <Row align="middle" gutter={[16, 16]}>
         {data?.services
@@ -77,7 +81,7 @@ const Service = () => {
             <Col key={idx} xs={24} sm={12} md={8}>
               <Card
                 hoverable
-                style={{ margin: "0 2em" }}
+                style={{ margin: "0 2em", maxWidth: "20rem" }}
                 cover={
                   <Image
                     src={Pic}
@@ -92,27 +96,72 @@ const Service = () => {
               >
                 {" "}
                 <Meta
-                  title={service?.name}
-                  description={service?.description?.slice(0, 50)}
+                  title={
+                    <Title
+                      style={{
+                        fontFamily: "Grandstander, cursive",
+                        fontSize: "1.5rem",
+                        color: "#21B7E2",
+                      }}
+                      level={2}
+                    >
+                      {service?.name}
+                    </Title>
+                  }
+                  // description={service?.description?.slice(0, 50)}
                 />
-                <p>
+                {/* <p>{service?.name}</p> */}
+                <p
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "1rem",
+                    color: "#35353F",
+                    fontWeight: "500",
+                  }}
+                >
+                  {service?.description?.slice(0, 50)}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.8rem",
+                    color: "#35353F",
+                    margin: "1em 0",
+                  }}
+                >
                   First Come First Service, No early bookings. For Each Day you
                   have to book us to avail our services
                 </p>
-                <p>Price- {service?.price}</p>
-                <p style={{ marginBottom: "1em" }}>
+                <p
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.8rem",
+                    color: "#35353F",
+                    margin: "1em 0",
+                  }}
+                >
+                  Price- {service?.price}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.8rem",
+                    color: "#35353F",
+                    marginBottom: "1.2em",
+                  }}
+                >
                   Service- {service?.serviceType}
                 </p>
                 {role ? (
                   <>
                     <Button
-                      type="primary"
+                      // style={{ backgroundColor: "#00334C" }}
                       onClick={() => {
                         setSingleData(service);
                         setIsModalOpen(true);
                       }}
                     >
-                      Review US
+                      Review Us
                     </Button>
                     <Button
                       style={{ marginLeft: "2em" }}
@@ -141,7 +190,18 @@ const Service = () => {
           ))}
       </Row>
       <Modal
-        title="Update Service"
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1rem",
+              color: "#21B7E2",
+            }}
+            level={2}
+          >
+            Your Review
+          </Title>
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -154,10 +214,13 @@ const Service = () => {
         >
           <h1
             style={{
-              margin: "15px 0px",
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
             }}
           >
-            Update {(singleData as IService)?.name} data
+            Review {(singleData as IService)?.name} data
           </h1>
           <div>
             <Form submitHandler={onSubmit}>
@@ -171,9 +234,11 @@ const Service = () => {
               >
                 <p
                   style={{
-                    fontSize: "18px",
+                    fontSize: "1.2rem",
                     fontWeight: "500",
                     margin: "5px 0px",
+                    fontFamily: "Inter, sans-serif",
+                    color: "#35353F",
                   }}
                 >
                   Service information
@@ -185,12 +250,22 @@ const Service = () => {
                       label="Service name"
                       size="large"
                       value={(singleData as IService)?.name}
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
                   <Col span={24} style={{ margin: "10px 0" }}>
                     <FormSelectField
                       name="rating"
                       label="Rating"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                       options={[
                         { value: "1", label: "1" },
                         { value: "2", label: "2" },
@@ -202,26 +277,34 @@ const Service = () => {
                   </Col>
 
                   <Col span={24} style={{ margin: "10px 0" }}>
-                    <FormTextArea rows={3} name="message" label="Comment" />
+                    <FormTextArea
+                      rows={3}
+                      name="message"
+                      label="Comment"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
+                    />
                   </Col>
                 </Row>
               </div>
 
               <div
                 style={{
-                  marginTop: "3em",
-                  marginLeft: "2em",
+                  // marginTop: "3em",
+                  // marginLeft: "2em",
+                  margin: "3em 0 0 22em",
                 }}
               >
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
+                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button
                   type="primary"
+                  htmlType="submit"
                   style={{ marginLeft: "1em" }}
-                  onClick={() => setIsModalOpen(false)}
                 >
-                  Cancel
+                  Update
                 </Button>
               </div>
             </Form>

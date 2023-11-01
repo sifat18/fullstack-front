@@ -7,6 +7,7 @@ type TextAreaProps = {
   rows?: number;
   value?: string;
   placeholder?: string;
+  labelStyle?: object;
 };
 
 const FormTextArea = ({
@@ -15,11 +16,12 @@ const FormTextArea = ({
   rows,
   value,
   placeholder,
+  labelStyle = {},
 }: TextAreaProps) => {
   const { control } = useFormContext();
   return (
     <div className={`flex flex-col  w-full`}>
-      {label ? label : null}
+      {label ? <p style={labelStyle}>{label}</p> : null}
       <Controller
         name={name}
         control={control}

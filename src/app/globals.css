@@ -142,7 +142,7 @@ a {
   font-size: 2rem;
   font-weight: 400;
   color: #21B7E2;
-  font-family: Grandstander;
+  font-family: "Grandstander";
 
 }
 
@@ -207,7 +207,7 @@ padding: 0.2em 0;
 .footer {
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding: 5em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -219,7 +219,7 @@ padding: 0.2em 0;
 
 /* Left part with centered image */
 .footer-image {
-  flex: 1;
+  flex: 2;
   text-align: center;
 }
 
@@ -230,7 +230,7 @@ padding: 0.2em 0;
 
 /* Right part with information, columns, and social links */
 .footer-info {
-  flex: 2;
+  flex: 3;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -380,11 +380,40 @@ margin-top: -1em;
 }
 .imghero{
   /* display: block; */
-  margin: -12em 0 0 12em;
-  padding: 5em 0em;
-  max-height: 100rem;
+  margin: -8em 0 0 12em;
+  padding: 1em 0em;
+  max-height: 90rem;
 }
 @media (max-width: 768px) {
   .imghero {
 display: none  
 }}
+.ant-btn{
+  background-color: white;
+  color: black;
+  border: none;
+  font-size: 1rem;
+  font-family: "Rasa,sans-serif";
+  
+}
+.ant-btn-primary{
+  background-color: #00334C;
+  color: #D0F6FF;
+  
+  font-size: 1rem;
+  font-family: "Rasa,sans-serif";
+  
+}
+
+
+.ant-btn-primary:hover{
+  color: white!important;  
+  background-color: #00334C!important;
+
+}
+.ant-btn:hover{
+  background-color: #00334C;
+  color: white!important;
+  text-decoration: none;
+  
+}

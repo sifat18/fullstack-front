@@ -15,6 +15,7 @@ type SelectFieldProps = {
   value?: string | string[] | undefined;
   placeholder?: string;
   label?: string;
+  labelStyle?: object;
   defaultValue?: SelectOptions;
   handleChange?: (el: string) => void;
 };
@@ -28,12 +29,13 @@ const FormSelectField = ({
   label,
   defaultValue,
   handleChange,
+  labelStyle = {},
 }: SelectFieldProps) => {
   const { control } = useFormContext();
 
   return (
     <>
-      {label ? label : null}
+      {label ? <p style={labelStyle}>{label}</p> : null}
       <Controller
         control={control}
         name={name}
