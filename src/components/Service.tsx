@@ -17,7 +17,7 @@ import {
   useCreateReviewMutation,
 } from "@/redux/api/userApi";
 const { Meta } = Card;
-export default function Service() {
+const Service = () => {
   const { role, _id } = getUserInfo() as any;
 
   const contentStyle: React.CSSProperties = {
@@ -62,7 +62,7 @@ export default function Service() {
     }
   };
   return (
-    <div>
+    <div style={{ marginRight: "8px" }}>
       <Image
         src={""}
         alt=""
@@ -231,4 +231,5 @@ export default function Service() {
       </Modal>
     </div>
   );
-}
+};
+export default Service;

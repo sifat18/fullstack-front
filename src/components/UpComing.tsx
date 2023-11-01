@@ -16,14 +16,8 @@ export default function UpComingService() {
     fontSize: "50px",
   };
 
-  const rowStyle = {
-    marginTop: "4rem",
-    paddingLeft: "15rem",
-    paddingRight: "5rem",
-    marginBottom: "4rem",
-  };
   return (
-    <div>
+    <div style={{ marginRight: "8px" }}>
       <h2 style={contentStyle}>UP Coming Service</h2>
 
       <Row align="middle" gutter={[16, 16]}>

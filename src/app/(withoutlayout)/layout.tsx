@@ -9,37 +9,16 @@ import {
   TwitterOutlined,
 } from "@ant-design/icons";
 import HeaderPage from "@/components/HeaderPage";
+import Footer from "@/components/Footer";
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
-  const footerStyle = {
-    backgroundColor: "#011f4b",
-    marginTop: "5rem",
-    height: "auto",
-  };
-  const list = {
-    listStyleType: "none",
-    fontSize: "15px",
-    color: "purple",
-    padding: "10px",
-  };
-  const list1 = {
-    marginBottom: "1rem",
-  };
-
-  const icon1 = {
-    marginLeft: "1px",
-    width: "20px",
-    color: "purple",
-    height: "20px",
-  };
-
   return (
-    <Layout className="layout">
+    <>
       <HeaderPage />
-      <Content style={{ height: "auto" }}>{children}</Content>
-      <Footer style={footerStyle}>
+      <div style={{ height: "" }}>{children}</div>
+      {/* <Footer style={footerStyle}>
         <Row gutter={20}>
           <Col>
             <Image src={foot} alt="" width={160} height={160}></Image>
@@ -68,8 +47,9 @@ const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
           <InstagramOutlined style={icon1} />
           <TwitterOutlined style={icon1} />
         </div>
-      </Footer>
-    </Layout>
+      </Footer> */}
+      <Footer />
+    </>
   );
 };
 
