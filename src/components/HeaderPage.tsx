@@ -39,13 +39,21 @@ const HeaderPage = () => {
             transform: "rotate(369.64deg)",
           }}
         ></Image>
-        Daily laundry
+        Daily Laundry
       </div>
       <ul className={`menu ${menuActive ? "active" : ""}`}>
-        <li>Home</li>
-        <li>About</li>
-        <li>Services</li>
-        <li>Contact</li>
+        <Link href={"/"}>
+          <li>Home</li>{" "}
+        </Link>
+        <Link href={"/about"}>
+          <li>About</li>
+        </Link>
+        <Link href={"/"}>
+          <li>Services</li>
+        </Link>
+        <Link href={"/"}>
+          <li>Contact</li>
+        </Link>
       </ul>
       <div className="menu-button" onClick={toggleMenu}>
         &#9776;

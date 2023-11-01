@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import learn from "../assets/learn.png";
 import { Button, Col, Row } from "antd";
+import Link from "next/link";
 const LearnMore = () => {
   return (
     <div className="learn">
@@ -68,16 +69,19 @@ const LearnMore = () => {
             Hard time deciding what’s best for you?
           </h2>
           <div style={{ margin: "2em 10em" }}>
-            <Button
-              style={{
-                padding: "0 5em",
-                height: "3rem",
-                fontFamily: "Inter,sans-serif",
-              }}
-            >
+            <Link href={"/about"}>
               {" "}
-              Learn More
-            </Button>
+              <Button
+                style={{
+                  padding: "0 5em",
+                  height: "3rem",
+                  fontFamily: "Inter,sans-serif",
+                }}
+              >
+                {" "}
+                Learn More
+              </Button>
+            </Link>
           </div>
         </Col>
       </Row>

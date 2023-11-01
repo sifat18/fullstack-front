@@ -15,27 +15,66 @@ const About = () => {
         <Card style={{}}>
           <Divider />
           <Typography>
-            <Title>About Us</Title>
-            <Paragraph>
-              Welcome to <strong>[Your Laundry Service Name]</strong>, your
-              trusted partner for all your laundry needs. We understand that
-              your time is precious, and we are here to make your life easier.
+            <Title
+              style={{
+                fontSize: "2rem",
+                fontFamily: "Rasa,serif",
+                color: "#21B7E2",
+              }}
+            >
+              About Us
+            </Title>
+            <Paragraph
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Inter,sans-serif",
+                fontWeight: "300",
+              }}
+            >
+              Welcome to{" "}
+              <strong style={{ fontFamily: "Grandstander,cursive" }}>
+                [Daily Laundry]
+              </strong>
+              , your trusted partner for all your laundry needs. We understand
+              that your time is precious, and we are here to make your life
+              easier.
             </Paragraph>
-            <Paragraph>
-              At <strong>[Your Laundry Service Name]</strong>, we are committed
-              to providing you with top-quality laundry services that meet and
-              exceed your expectations. Our dedicated team works tirelessly to
-              ensure that your garments are treated with the utmost care and
-              returned to you in pristine condition.
+            <Paragraph
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Inter,sans-serif",
+                fontWeight: "300",
+              }}
+            >
+              At{" "}
+              <strong style={{ fontFamily: "Grandstander,cursive" }}>
+                [Daily Laundry]
+              </strong>
+              , we are committed to providing you with top-quality laundry
+              services that meet and exceed your expectations. Our dedicated
+              team works tirelessly to ensure that your garments are treated
+              with the utmost care and returned to you in pristine condition.
             </Paragraph>
-            <Paragraph>
+            <Paragraph
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Inter,sans-serif",
+                fontWeight: "300",
+              }}
+            >
               Our mission is simple: to simplify your life by taking the hassle
               out of laundry. Whether your are a busy professional, a parent on
               the go, or simply looking for more convenience, we have got you
               covered. We offer a wide range of services, including washing,
               drying, folding, and more.
             </Paragraph>
-            <Paragraph>
+            <Paragraph
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Inter,sans-serif",
+                fontWeight: "300",
+              }}
+            >
               Why choose us?
               <ul>
                 <li>
@@ -59,7 +98,13 @@ const About = () => {
                 </li>
               </ul>
             </Paragraph>
-            <Paragraph>
+            <Paragraph
+              style={{
+                fontSize: "1rem",
+                fontFamily: "Inter,sans-serif",
+                fontWeight: "300",
+              }}
+            >
               We look forward to serving you and simplifying your laundry
               experience. Feel free to <strong>Contact Us</strong> for any
               inquiries or to schedule a pick-up.

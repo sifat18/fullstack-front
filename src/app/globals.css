@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@300;400;600&family=Inter:wght@500&family=Rasa:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grandstander:wght@300;400;600&family=Inter:wght@500;300&family=Rasa:wght@300;500&display=swap");
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -131,7 +131,7 @@ a {
   position: sticky;
   top: 0px;
   z-index: 1;
-  font-family: "Inter", sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 /* Logo */
@@ -142,7 +142,7 @@ a {
   font-size: 2rem;
   font-weight: 400;
   color: #21B7E2;
-  font-family: "Grandstander";
+  font-family: Grandstander,cursive;
 
 }
 
@@ -227,7 +227,7 @@ padding: 0.2em 0;
   font-size: 2rem;
   font-weight: 400;
   color: #21B7E2;
-  font-family: "Grandstander";
+  font-family: Grandstander,cursive;
 }
 
 .footer-image img {
@@ -252,14 +252,14 @@ padding: 0.2em 0;
   box-sizing: border-box;
   color: #263238;
 font-size: 1rem;
-font-family: "Inter,sans-serif";
+font-family: Inter,sans-serif;
 font-weight: 700;
 }
 .footer-info-column p {
   margin: 0.5em -0.5em;
   color: "#263238";
   font-size: 1rem;
-font-family: "Inter,sans-serif";
+font-family: Inter,sans-serif;
 font-weight: 500;
 }
 .footer-social {
@@ -267,7 +267,7 @@ font-weight: 500;
   text-align: right;
   margin-top:-3em ;
   color: #263238;
-  font-family: "Inter,sans-serif";
+  font-family: Inter,sans-serif;
   font-weight: 500;
   
 }
@@ -278,7 +278,7 @@ font-weight: 500;
   margin:  2em;
   color: #263238;
   font-size: 1.5rem;
-  font-family: "Inter,sans-serif";
+  font-family: Inter,sans-serif;
   font-weight: 500;
 }
 
@@ -320,18 +320,18 @@ font-weight: 500;
 .hero > p:nth-child(1){
   color: black;
 font-size: 1rem;
-font-family: "Inter", sans-serif;
+font-family: Inter, sans-serif;
 font-weight: 600;
 word-wrap: break-word;
-max-width: 20em ;
+max-width: 21rem ;
 background: #D0F6FF;
  border-radius: 20px;
-padding: 0.5em 0.7em;
+padding: 0.5em 1em;
 margin: 7em 3em;
 }
 .hero .secondary{color: #00334C;
   font-size: 1.2rem;
-  font-family: "Inter";
+  font-family: Inter,sans-serif;
   font-weight: 500;
   letter-spacing: 0.1em;
   word-wrap: break-word;
@@ -348,7 +348,7 @@ margin: 0 2.7em;
 text-align: center;
 color: black;
 font-size: 1rem;
-font-family: "Inter";
+font-family: Inter,sans-serif;
 font-weight: 600;
 word-wrap: break-word;
 cursor: pointer;
@@ -369,7 +369,7 @@ cursor: pointer;
 .hero h1{
   color: #00334C;
   font-size: 4rem;
-  font-family: "Grandstander";
+  font-family: Grandstander,cursive;
   font-weight: 300;
   word-wrap: break-word;
 padding: 0 0.8em;
@@ -398,7 +398,7 @@ margin-top: -1em;
 .hero .tail span{
   color: #489FB5;
   font-size: 0.7rem;
-  font-family: Inter;
+  font-family: Inter,sans-serif;
   font-weight: 600;
   word-wrap: break-word;
 
@@ -418,15 +418,15 @@ margin-top: -1em;
   font-size: 1rem;
  margin: 0; 
 
-  font-family: "Rasa,sans-serif";
+  font-family: Rasa,sans-serif;
   
 }
 .ant-btn-primary{
-  background-color: #00334C;
-  color: #D0F6FF;
+  background-color: #00334C!important;
+  color: #D0F6FF!important;
   
   font-size: 1rem;
-  font-family: "Rasa,sans-serif";
+  font-family: Rasa,sans-serif;
   
 }
 

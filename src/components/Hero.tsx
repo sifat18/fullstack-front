@@ -2,6 +2,7 @@ import { Button, Col, Row } from "antd";
 import Image from "next/image";
 import React from "react";
 import laundry from "../assets/laundry2.png";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -25,7 +26,9 @@ const Hero = () => {
             Daily Laundry service will wash, dry, and fold your laundry at an
             affordable price. Pickup and drop-off options available!
           </p>
-          <div className="btn">How it works</div>
+          <Link href={"/about"}>
+            <div className="btn">How it works</div>
+          </Link>
           <div className="tail">
             <p>
               18m+{" "}
