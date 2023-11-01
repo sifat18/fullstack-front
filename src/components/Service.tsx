@@ -59,8 +59,7 @@ const Service = () => {
     }
   };
   return (
-    <div style={{ margin: "5em" }}>
-      <Image src={""} alt="" style={{}}></Image>
+    <div style={{ margin: "15em 5em" }}>
       <h2
         style={{
           textAlign: "center",

@@ -9,12 +9,14 @@ import Category from "@/components/Category";
 import UpComingService from "@/components/UpComing";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
+import Steps from "@/components/Steps";
 const Home = () => {
   return (
     <div>
       <Hero />
       {/* <CarouselPage /> */}
       <Service />
+      <Steps />
       <UpComingService />
       <Review />
       <Category></Category>
