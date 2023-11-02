@@ -32,7 +32,16 @@ function CreateAdmin() {
           { label: "create-admin", link: `/${base}/create-admin` },
         ]}
       />
-      <h1>Create Admin</h1>
+      <h1
+        style={{
+          margin: "0.5em 0.2em",
+          fontFamily: "Rasa, serif",
+          fontSize: "1.5rem",
+          color: "#35353F",
+        }}
+      >
+        Create Admin
+      </h1>
       <Form submitHandler={onSubmit}>
         <div
           style={{
@@ -42,7 +51,14 @@ function CreateAdmin() {
             marginBottom: "10px",
           }}
         >
-          <p style={{ fontSize: "18px", fontWeight: "500", margin: "5px 0px" }}>
+          <p
+            style={{
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
+            }}
+          >
             Admin information
           </p>
           <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
@@ -51,14 +67,38 @@ function CreateAdmin() {
                 name="name.firstName"
                 label="First name"
                 size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
               />
             </Col>
 
             <Col span={6} style={{ margin: "10px 0" }}>
-              <FormInput name="name.lastName" label="Last name" size="large" />
+              <FormInput
+                name="name.lastName"
+                label="Last name"
+                size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
+              />
             </Col>
             <Col span={6} style={{ margin: "10px 0" }}>
-              <FormInput name="email" label="Email" size="large" type="email" />
+              <FormInput
+                name="email"
+                label="Email"
+                size="large"
+                type="email"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
+              />
             </Col>
             <Col span={6} style={{ margin: "10px 0" }}>
               <FormInput
@@ -66,10 +106,24 @@ function CreateAdmin() {
                 label="Contact"
                 size="large"
                 type="number"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
               />
             </Col>
             <Col span={6} style={{ margin: "10px 0" }}>
-              <FormInput name="Address" label="Address" size="large" />
+              <FormInput
+                name="Address"
+                label="Address"
+                size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
+              />
             </Col>
 
             <Col span={6} style={{ margin: "10px 0" }}>
@@ -78,6 +132,11 @@ function CreateAdmin() {
                 name="password"
                 label="Password"
                 size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
               />
             </Col>
 
@@ -86,12 +145,26 @@ function CreateAdmin() {
                 name="service"
                 label="Service"
                 options={serviceOptions}
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
               />
             </Col>
           </Row>
         </div>
 
-        <Button htmlType="submit">submit</Button>
+        <Button
+          htmlType="submit"
+          style={{
+            margin: "1em ",
+            fontFamily: "Rasa, serif",
+            fontSize: "1rem",
+          }}
+        >
+          Submit
+        </Button>
       </Form>
     </>
   );

@@ -81,6 +81,8 @@ const GetProfile = () => {
         <Button
           style={{
             margin: "0px 5px",
+            fontFamily: "Rasa, serif",
+            fontSize: "1rem",
           }}
           onClick={() => {
             setIsModalOpen(true);
@@ -361,11 +363,23 @@ const GetProfile = () => {
                   margin: "3em 0 0 21em",
                 }}
               >
-                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+                <Button
+                  style={{
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </Button>
                 <Button
                   type="primary"
                   htmlType="submit"
-                  style={{ marginLeft: "1em" }}
+                  style={{
+                    marginLeft: "1em",
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
                 >
                   Update
                 </Button>

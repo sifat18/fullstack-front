@@ -27,7 +27,16 @@ function CreateServiceCommon() {
   };
   return (
     <>
-      <h1>Create Service</h1>
+      <h1
+        style={{
+          margin: "0.5em 0.2em",
+          fontFamily: "Rasa, serif",
+          fontSize: "1.5rem",
+          color: "#35353F",
+        }}
+      >
+        Create Service
+      </h1>
       <Form submitHandler={onSubmit}>
         <div
           style={{
@@ -37,12 +46,28 @@ function CreateServiceCommon() {
             marginBottom: "10px",
           }}
         >
-          <p style={{ fontSize: "18px", fontWeight: "500", margin: "5px 0px" }}>
+          <p
+            style={{
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
+            }}
+          >
             Service information
           </p>
           <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
             <Col span={8} style={{ margin: "10px 0" }}>
-              <FormInput name="name" label="Service name" size="large" />
+              <FormInput
+                name="name"
+                label="Service name"
+                size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
+              />
             </Col>
 
             <Col span={8} style={{ margin: "10px 0" }}>
@@ -51,6 +76,11 @@ function CreateServiceCommon() {
                 label="Price"
                 size="large"
                 type="number"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
               />
             </Col>
             <Col span={8} style={{ margin: "10px 0" }}>
@@ -58,6 +88,11 @@ function CreateServiceCommon() {
                 name="slots"
                 label="Slots Per day"
                 size="large"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
                 type={"number"}
               />
             </Col>
@@ -66,6 +101,11 @@ function CreateServiceCommon() {
               <FormSelectField
                 name="serviceType"
                 label="Service Type"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
                 options={serviceTypeOptions}
               />
             </Col>
@@ -73,16 +113,39 @@ function CreateServiceCommon() {
               <FormSelectField
                 name="status"
                 label="Status"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
                 options={statusOptions}
               />
             </Col>
             <Col span={24} style={{ margin: "10px 0" }}>
-              <FormTextArea rows={3} name="description" label="description" />
+              <FormTextArea
+                rows={3}
+                name="description"
+                label="Description"
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "0.8rem",
+                  color: "#35353F",
+                }}
+              />
             </Col>
           </Row>
         </div>
 
-        <Button htmlType="submit">submit</Button>
+        <Button
+          htmlType="submit"
+          style={{
+            margin: "1em ",
+            fontFamily: "Rasa, serif",
+            fontSize: "1rem",
+          }}
+        >
+          Submit
+        </Button>
       </Form>
     </>
   );

@@ -1,6 +1,5 @@
 import logo from "../assets/output.png";
 import Image from "next/image";
-import { Menu } from "antd";
 import Link from "next/link";
 import { getUserInfo, removeUserInfo } from "@/helpers/authHelper";
 import { useRouter } from "next/navigation";

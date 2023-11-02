@@ -27,6 +27,7 @@ import {
   useReviewsQuery,
   useUpdateReviewMutation,
 } from "@/redux/api/userApi";
+import Title from "antd/es/typography/Title";
 
 const GetReviewsCommon = () => {
   const [updateReview] = useUpdateReviewMutation();
@@ -144,7 +145,6 @@ const GetReviewsCommon = () => {
                   ),
                 });
               }}
-              type="primary"
               danger
             >
               <DeleteOutlined />
@@ -187,7 +187,18 @@ const GetReviewsCommon = () => {
       />
 
       <Modal
-        title="Update Order Status"
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1rem",
+              color: "#21B7E2",
+            }}
+            level={2}
+          >
+            Review Details
+          </Title>
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -200,7 +211,10 @@ const GetReviewsCommon = () => {
         >
           <h1
             style={{
-              margin: "15px 0px",
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
             }}
           >
             Update {(singleData as IOrder)?.client?.name?.firstName} data
@@ -217,12 +231,14 @@ const GetReviewsCommon = () => {
               >
                 <p
                   style={{
-                    fontSize: "18px",
+                    fontSize: "1.2rem",
                     fontWeight: "500",
                     margin: "5px 0px",
+                    fontFamily: "Inter, sans-serif",
+                    color: "#35353F",
                   }}
                 >
-                  Order Status Update
+                  Review Status Update
                 </p>
                 <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
                   <Col span={24} style={{ margin: "10px 0" }}>
@@ -230,6 +246,11 @@ const GetReviewsCommon = () => {
                       name="name"
                       label="Service name"
                       size="large"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                       value={(singleData as IOrder)?.services?.name}
                     />
                   </Col>
@@ -237,6 +258,11 @@ const GetReviewsCommon = () => {
                     <FormSelectField
                       name="rating"
                       label="Rating"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                       options={[
                         { value: "1", label: "1" },
                         { value: "2", label: "2" },
@@ -247,26 +273,34 @@ const GetReviewsCommon = () => {
                     />
                   </Col>
                   <Col span={24} style={{ margin: "10px 0" }}>
-                    <FormTextArea rows={3} name="message" label="Status" />
+                    <FormTextArea
+                      rows={3}
+                      name="message"
+                      label="Status"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
+                    />
                   </Col>
                 </Row>
               </div>
 
               <div
                 style={{
-                  marginTop: "3em",
-                  marginLeft: "2em",
+                  // marginTop: "3em",
+                  // marginLeft: "2em",
+                  margin: "3em 0 0 21em",
                 }}
               >
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
+                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button
                   type="primary"
+                  htmlType="submit"
                   style={{ marginLeft: "1em" }}
-                  onClick={() => setIsModalOpen(false)}
                 >
-                  Cancel
+                  Update
                 </Button>
               </div>
             </Form>

@@ -380,11 +380,24 @@ const GetServiceCommon = () => {
                   margin: "3em 0 0 21em",
                 }}
               >
-                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+                <Button
+                  style={{
+                    marginLeft: "1em",
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </Button>
                 <Button
                   type="primary"
                   htmlType="submit"
-                  style={{ marginLeft: "1em" }}
+                  style={{
+                    marginLeft: "0.5em",
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
                 >
                   Update
                 </Button>

@@ -16,6 +16,7 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import { serviceOptions } from "@/constants/role";
 import { IAdmin } from "@/types/common";
+import Title from "antd/es/typography/Title";
 
 const AdminPage = () => {
   const [updateAdmin] = useUpdateAdminMutation();
@@ -132,7 +133,6 @@ const AdminPage = () => {
                   ),
                 });
               }}
-              type="primary"
               danger
             >
               <DeleteOutlined />
@@ -162,7 +162,18 @@ const AdminPage = () => {
       />
 
       <Modal
-        title="Update Service"
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1rem",
+              color: "#21B7E2",
+            }}
+            level={2}
+          >
+            Admin Details{" "}
+          </Title>
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -175,7 +186,10 @@ const AdminPage = () => {
         >
           <h1
             style={{
-              margin: "15px 0px",
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
             }}
           >
             Update {(singleData as any)?.name?.firstName} data
@@ -194,6 +208,11 @@ const AdminPage = () => {
                     name="email"
                     type="email"
                     size="large"
+                    labelStyle={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.8rem",
+                      color: "#35353F",
+                    }}
                     label={"Email"}
                   />
                 </div>
@@ -204,26 +223,29 @@ const AdminPage = () => {
                 >
                   <FormSelectField
                     name="service"
-                    label="service"
+                    label="Service"
+                    labelStyle={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.8rem",
+                      color: "#35353F",
+                    }}
                     options={serviceOptions}
                   />
                 </div>
-
                 <div
                   style={{
-                    marginTop: "3em",
-                    marginLeft: "2em",
+                    // marginTop: "3em",
+                    // marginLeft: "2em",
+                    margin: "3em 0 0 21em",
                   }}
                 >
-                  <Button type="primary" htmlType="submit">
-                    Update
-                  </Button>
+                  <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
                   <Button
                     type="primary"
+                    htmlType="submit"
                     style={{ marginLeft: "1em" }}
-                    onClick={() => setIsModalOpen(false)}
                   >
-                    Cancel
+                    Update
                   </Button>
                 </div>
               </div>
