@@ -20,7 +20,7 @@ export default function Review() {
 
   const contentStyle: React.CSSProperties = {
     color: "#00334C",
-    fontSize: "4rem",
+    fontSize: "3rem",
     fontFamily: "Rasa,serif",
     fontWeight: "500",
     wordWrap: "break-word",
