@@ -55,7 +55,7 @@ const LoginPage = () => {
             fontSize: "1.2rem",
           }}
         >
-          First login your account
+          First login to your account
         </h1>
         <div>
           <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
