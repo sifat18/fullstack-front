@@ -36,7 +36,7 @@ export default function UpComingService() {
       </h2>
       <h2 style={contentStyle}>Up Coming Services</h2>
 
-      <Row align="middle" gutter={[16, 16]}>
+      <Row align="middle" gutter={[16, 16]} style={{ margin: "0 2em" }}>
         {data?.services
           ?.filter((item) => item?.status === "upcoming")
           .map((service, idx) => (
