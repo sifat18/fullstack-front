@@ -21,7 +21,7 @@ export default function UpComingService() {
   };
 
   return (
-    <div style={{ margin: "5em" }}>
+    <div style={{ margin: "12em" }}>
       <h2
         style={{
           textAlign: "center",

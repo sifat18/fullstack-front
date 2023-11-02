@@ -18,7 +18,7 @@ const Category = () => {
         // maxWidth: "100vw",
         // paddingTop: "5em",
         // paddingBottom: "5em",
-        margin: "5em 5em",
+        margin: "15em 5em",
       }}
     >
       <p
@@ -46,7 +46,7 @@ const Category = () => {
           margin: "1em 0",
         }}
       >
-        Our Services For you
+        Our Services For You
       </h2>
       <Row align="middle" gutter={[16, 16]}>
         {data?.map((service, idx) => (
