@@ -62,7 +62,9 @@ const GetClientsCommon = () => {
   }
   const { data, isLoading } = useClientsQuery({ ...query });
 
-  const users = data?.users;
+  const users = data?.users?.filter(
+    (item) => item?.role !== "admin" && item?.role !== "super-admin"
+  );
   const meta = data?.meta;
 
   const handleOk = () => {
