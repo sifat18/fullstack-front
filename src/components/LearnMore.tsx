@@ -46,7 +46,9 @@ const LearnMore = () => {
               fontWeight: "600",
               letterSpacing: "1.20px",
               wordWrap: "break-word",
-              //   marginTop: "2em",
+              marginTop: "1em",
+              padding: "0.5em",
+              textAlign: "left",
             }}
           >
             Hard time deciding what’s best for you?

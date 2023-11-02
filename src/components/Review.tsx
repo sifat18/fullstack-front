@@ -26,6 +26,7 @@ export default function Review() {
     wordWrap: "break-word",
     textAlign: "center",
     margin: "0.4em 0",
+    maxWidth: "100vw",
   };
 
   return (
