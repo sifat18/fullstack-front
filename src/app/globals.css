@@ -378,6 +378,12 @@ margin-top: -1em;
   margin: 15em 5em;
   border-radius: 5rem;
 }
+
+.learn-image{
+  max-height: 500px;
+  max-width: 500px;
+  margin: -12em 5em 0 5em;
+}
 @media (max-width: 768px) {
   .imghero {
 display: none  
@@ -389,10 +395,20 @@ display: none
 }
 .learn{
   max-Height: 50rem;
-  max-width: 50rem;
-  margin: 15em 1em;
+  max-width: 100vw;
+  margin: 15em 0;
   padding: 2em;
 
 
 }
+.learn-image{
+   margin: -17em 0 0 -5em;
+}
+
+.learn-btn{
+  margin: 0 2em;
+}
+}
+.learn-btn{
+  margin: 0 5em;
 }

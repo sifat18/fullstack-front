@@ -33,28 +33,11 @@ const LearnMore = () => {
       >
         Get it done in 4 steps
       </h2> */}
-      <Row align="middle" gutter={[16, 16]}>
+      <Row>
         <Col xs={24} sm={12} md={12}>
-          <Image
-            src={learn}
-            alt=""
-            style={{
-              //   objectFit: "contain",
-              height: 500,
-              width: 500,
-              margin: "-12em 5em 0 5em",
-              // marginTop:
-            }}
-          ></Image>
+          <Image src={learn} alt="" className="learn-image"></Image>
         </Col>
-        <Col
-          xs={24}
-          sm={24}
-          md={12}
-          style={{
-            marginTop: "2em",
-          }}
-        >
+        <Col xs={24} sm={24} md={12}>
           <h2
             style={{
               color: "#263238",
@@ -68,7 +51,7 @@ const LearnMore = () => {
           >
             Hard time deciding what’s best for you?
           </h2>
-          <div style={{ margin: "2em 10em" }}>
+          <div className="learn-btn" style={{ margin: "2em 0" }}>
             <Link href={"/about"}>
               {" "}
               <Button
