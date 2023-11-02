@@ -28,7 +28,8 @@ const Service = () => {
     fontWeight: "500",
     wordWrap: "break-word",
     textAlign: "center",
-    margin: "0.4em 0",
+    margin: "0.4em auto",
+    minWidth: "25rem",
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,7 +61,7 @@ const Service = () => {
     }
   };
   return (
-    <div style={{ margin: "15em 5em" }}>
+    <div style={{ margin: "15em 0" }}>
       <h2
         style={{
           textAlign: "center",
@@ -74,14 +75,20 @@ const Service = () => {
       </h2>
       <h2 style={contentStyle}>Services & Packages</h2>
 
-      <Row align="middle" gutter={[16, 16]}>
+      <Row align="middle" gutter={[16, 16]} style={{ margin: "0 auto" }}>
         {data?.services
           ?.filter((item) => item?.status === "active")
           .map((service, idx) => (
-            <Col key={idx} xs={24} sm={12} md={8}>
+            <Col
+              key={idx}
+              xs={24}
+              sm={12}
+              md={8}
+              style={{ maxWidth: "20rem", margin: "0 auto" }}
+            >
               <Card
                 hoverable
-                style={{ margin: "0 2em", maxWidth: "20rem" }}
+                // style={{ margin: "0 2em" }}
                 cover={
                   <Image
                     src={Pic}

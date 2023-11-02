@@ -18,7 +18,7 @@ const Category = () => {
         // maxWidth: "100vw",
         // paddingTop: "5em",
         // paddingBottom: "5em",
-        margin: "15em 5em",
+        margin: "15em 0",
       }}
     >
       <p
@@ -48,16 +48,22 @@ const Category = () => {
       >
         Our Services For You
       </h2>
-      <Row align="middle" gutter={[16, 16]}>
+      <Row align="middle" gutter={[16, 16]} style={{ margin: "0 2em" }}>
         {data?.map((service, idx) => (
-          <Col key={idx} xs={24} sm={12} md={8}>
+          <Col
+            key={idx}
+            xs={24}
+            sm={12}
+            md={8}
+            style={{ maxWidth: "20rem", margin: "0 auto" }}
+          >
             <Card
               hoverable
-              style={{
-                margin: "0 auto",
-                maxWidth: "17rem",
-                textAlign: "center",
-              }}
+              style={
+                {
+                  // margin: "0 auto",
+                }
+              }
               // title={
 
               // }
@@ -82,8 +88,8 @@ const Category = () => {
                 alt=""
                 style={{
                   objectFit: "cover",
-                  height: 200,
-                  width: 220,
+                  height: 250,
+                  width: 250,
                   marginTop: "1em",
                 }}
               ></Image>{" "}
