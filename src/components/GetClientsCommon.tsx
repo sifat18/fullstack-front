@@ -29,6 +29,7 @@ import {
   useUpdateClientMutation,
 } from "@/redux/api/adminApi";
 import { IUser } from "@/types/common";
+import Title from "antd/es/typography/Title";
 
 const GetClientsCommon = () => {
   const [updateUser] = useUpdateClientMutation();
@@ -141,7 +142,7 @@ const GetClientsCommon = () => {
                   ),
                 });
               }}
-              type="primary"
+              // type="primary"
               danger
             >
               <DeleteOutlined />
@@ -227,7 +228,18 @@ const GetClientsCommon = () => {
       />
 
       <Modal
-        title="Update User"
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1rem",
+              color: "#21B7E2",
+            }}
+            level={2}
+          >
+            Update User
+          </Title>
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -240,11 +252,15 @@ const GetClientsCommon = () => {
         >
           <h1
             style={{
-              margin: "15px 0px",
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
             }}
           >
             Update{" "}
             {(singleData as IUser)?.name?.firstName +
+              " " +
               (singleData as IUser)?.name?.lastName}{" "}
             data
           </h1>
@@ -260,9 +276,11 @@ const GetClientsCommon = () => {
               >
                 <p
                   style={{
-                    fontSize: "18px",
+                    fontSize: "1.2rem",
                     fontWeight: "500",
                     margin: "5px 0px",
+                    fontFamily: "Inter, sans-serif",
+                    color: "#35353F",
                   }}
                 >
                   Users information
@@ -274,30 +292,41 @@ const GetClientsCommon = () => {
                       label="Contact No"
                       size="large"
                       type="number"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
 
                   <Col span={24} style={{ margin: "10px 0" }}>
-                    <FormTextArea rows={3} name="address" label="address" />
+                    <FormTextArea
+                      rows={3}
+                      name="address"
+                      label="Address"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
+                    />
                   </Col>
                 </Row>
               </div>
 
               <div
                 style={{
-                  marginTop: "3em",
-                  marginLeft: "2em",
+                  margin: "3em 0 0 21em",
                 }}
               >
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
+                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button
                   type="primary"
+                  htmlType="submit"
                   style={{ marginLeft: "1em" }}
-                  onClick={() => setIsModalOpen(false)}
                 >
-                  Cancel
+                  Update
                 </Button>
               </div>
             </Form>

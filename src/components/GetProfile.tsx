@@ -77,7 +77,7 @@ const GetProfile = () => {
   };
   return (
     <div>
-      <ActionBar title="My Profile">
+      <ActionBar title={"My Profile"}>
         <Button
           style={{
             margin: "0px 5px",
@@ -90,32 +90,162 @@ const GetProfile = () => {
           Edit Profile
         </Button>
       </ActionBar>
-      <Card title="User Profile" style={{ width: "100%" }}>
+      <Card
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1.2rem",
+              color: "#21B7E2",
+              margin: "0.5em 0",
+            }}
+            level={2}
+          >
+            {" "}
+            Profile
+          </Title>
+        }
+        // style={{ width: "100%" }}
+      >
         <Row gutter={[16, 16]}>
           <Col xs={24} sm={12} md={6}>
-            <UserOutlined />
-            <Title level={4}>Name</Title>
-            <p>{`${users?.name?.firstName} ${users?.name?.lastName}`}</p>
+            <UserOutlined
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.5rem",
+                color: "#35353F",
+              }}
+            />
+            <Title
+              level={4}
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.2rem",
+                color: "#35353F",
+              }}
+            >
+              Name
+            </Title>
+            <p
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1rem",
+                color: "#35353F",
+              }}
+            >{`${users?.name?.firstName} ${users?.name?.lastName}`}</p>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <MailOutlined />
-            <Title level={4}>Email</Title>
-            <p>{users?.email}</p>
+            <MailOutlined
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.5rem",
+                color: "#35353F",
+              }}
+            />
+            <Title
+              level={4}
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.2rem",
+                color: "#35353F",
+              }}
+            >
+              Email
+            </Title>
+            <p
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1rem",
+                color: "#35353F",
+              }}
+            >
+              {users?.email}
+            </p>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <PhoneOutlined />
-            <Title level={4}>Contact</Title>
-            <p>{users?.phoneNumber}</p>
+            <PhoneOutlined
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.5rem",
+                color: "#35353F",
+              }}
+            />
+            <Title
+              level={4}
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.2rem",
+                color: "#35353F",
+              }}
+            >
+              Contact
+            </Title>
+            <p
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1rem",
+                color: "#35353F",
+              }}
+            >
+              {users?.phoneNumber}
+            </p>
           </Col>
           <Col xs={24} sm={12} md={6}>
-            <EnvironmentOutlined />
-            <Title level={4}>Address</Title>
-            <p>{users?.address}</p>
+            <EnvironmentOutlined
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.5rem",
+                color: "#35353F",
+              }}
+            />
+            <Title
+              level={4}
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1.2rem",
+                color: "#35353F",
+              }}
+            >
+              Address
+            </Title>
+            <p
+              style={{
+                margin: "0.5em 0",
+                fontFamily: "Rasa, serif",
+                fontSize: "1rem",
+                color: "#35353F",
+              }}
+            >
+              {users?.address}
+            </p>
           </Col>
         </Row>
       </Card>
       <Modal
-        title="Update User"
+        title={
+          <Title
+            style={{
+              fontFamily: "Grandstander, cursive",
+              fontSize: "1rem",
+              color: "#21B7E2",
+            }}
+            level={2}
+          >
+            {" "}
+            Edit Information
+          </Title>
+        }
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -128,10 +258,13 @@ const GetProfile = () => {
         >
           <h1
             style={{
-              margin: "15px 0px",
+              margin: "0.5em 0",
+              fontFamily: "Rasa, serif",
+              fontSize: "1.5rem",
+              color: "#35353F",
             }}
           >
-            Update {users?.name!?.firstName + users?.name?.lastName} data
+            Update {users?.name!?.firstName + " " + users?.name?.lastName} data
           </h1>
           <div>
             <Form defaultValues={defaultValues} submitHandler={onSubmit}>
@@ -145,9 +278,11 @@ const GetProfile = () => {
               >
                 <p
                   style={{
-                    fontSize: "18px",
+                    fontSize: "1.2rem",
                     fontWeight: "500",
                     margin: "5px 0px",
+                    fontFamily: "Inter, sans-serif",
+                    color: "#35353F",
                   }}
                 >
                   Users information
@@ -159,6 +294,11 @@ const GetProfile = () => {
                       label="First Name"
                       size="large"
                       type="text"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
                   <Col span={24} style={{ margin: "10px 0" }}>
@@ -167,6 +307,11 @@ const GetProfile = () => {
                       label="Last Name "
                       size="large"
                       type="text"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
                   <Col span={12} style={{ margin: "10px 0" }}>
@@ -175,6 +320,11 @@ const GetProfile = () => {
                       label="Contact No"
                       size="large"
                       type="number"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
                   <Col span={12} style={{ margin: "10px 0" }}>
@@ -183,30 +333,41 @@ const GetProfile = () => {
                       label="Email"
                       size="large"
                       type="email"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
                     />
                   </Col>
 
                   <Col span={24} style={{ margin: "10px 0" }}>
-                    <FormTextArea rows={3} name="address" label="address" />
+                    <FormTextArea
+                      rows={3}
+                      name="address"
+                      label="Address"
+                      labelStyle={{
+                        fontFamily: "Inter, sans-serif",
+                        fontSize: "0.8rem",
+                        color: "#35353F",
+                      }}
+                    />
                   </Col>
                 </Row>
               </div>
 
               <div
                 style={{
-                  marginTop: "3em",
-                  marginLeft: "2em",
+                  margin: "3em 0 0 21em",
                 }}
               >
-                <Button type="primary" htmlType="submit">
-                  Update
-                </Button>
+                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
                 <Button
                   type="primary"
+                  htmlType="submit"
                   style={{ marginLeft: "1em" }}
-                  onClick={() => setIsModalOpen(false)}
                 >
-                  Cancel
+                  Update
                 </Button>
               </div>
             </Form>

@@ -49,7 +49,9 @@ const HeaderPage = () => {
           </Link>
         ) : null}
         {role ? (
-          <li onClick={logout}>Logout</li>
+          <li style={{ cursor: "pointer" }} onClick={logout}>
+            Logout
+          </li>
         ) : (
           <Link href={"/login"}>
             <li>Login</li>
