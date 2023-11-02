@@ -403,6 +403,8 @@ display: none
 }
 .learn-image{
    margin: -17em 0 0 -5em;
+   max-width: 450px;
+
 }
 
 .learn-btn{
