@@ -75,7 +75,7 @@ const Service = () => {
       </h2>
       <h2 style={contentStyle}>Services & Packages</h2>
 
-      <Row align="middle" gutter={[16, 16]} style={{ margin: "0 auto" }}>
+      <Row align="middle" style={{ margin: "0 auto" }}>
         {data?.services
           ?.filter((item) => item?.status === "active")
           .map((service, idx) => (
@@ -84,7 +84,7 @@ const Service = () => {
               xs={24}
               sm={12}
               md={8}
-              style={{ maxWidth: "20rem", margin: "0 auto" }}
+              style={{ maxWidth: "20rem", margin: "0 5em" }}
             >
               <Card
                 hoverable
