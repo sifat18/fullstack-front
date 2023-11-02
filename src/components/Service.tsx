@@ -156,7 +156,12 @@ const Service = () => {
                   <>
                     <Button
                       className="extra"
-                      // style={{ backgroundColor: "#00334C" }}
+                      style={{
+                        // backgroundColor: "#00334C",
+
+                        fontFamily: "Rasa, serif",
+                        fontSize: "1rem",
+                      }}
                       onClick={() => {
                         setSingleData(service);
                         setIsModalOpen(true);
@@ -165,7 +170,11 @@ const Service = () => {
                       Review Us
                     </Button>
                     <Button
-                      style={{ marginLeft: "2em" }}
+                      style={{
+                        marginLeft: "2em",
+                        fontFamily: "Rasa, serif",
+                        fontSize: "1rem",
+                      }}
                       type="primary"
                       className="extra"
                       onClick={() => {
@@ -300,11 +309,23 @@ const Service = () => {
                   margin: "3em 0 0 21em",
                 }}
               >
-                <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+                <Button
+                  style={{
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </Button>
                 <Button
                   type="primary"
                   htmlType="submit"
-                  style={{ marginLeft: "1em" }}
+                  style={{
+                    marginLeft: "1em",
+                    fontFamily: "Rasa, serif",
+                    fontSize: "1rem",
+                  }}
                 >
                   Update
                 </Button>

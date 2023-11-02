@@ -75,7 +75,8 @@ const LearnMore = () => {
                 style={{
                   padding: "0 5em",
                   height: "3rem",
-                  fontFamily: "Inter,sans-serif",
+                  fontFamily: "Rasa, serif",
+                  fontSize: "1rem",
                 }}
               >
                 {" "}
