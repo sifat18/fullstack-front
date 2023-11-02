@@ -18,10 +18,11 @@ export default function UpComingService() {
     wordWrap: "break-word",
     textAlign: "center",
     margin: "0.4em 0",
+    // width: "500px",
   };
 
   return (
-    <div style={{ margin: "12em" }}>
+    <div style={{ margin: "12em 0" }}>
       <h2
         style={{
           textAlign: "center",
@@ -39,10 +40,16 @@ export default function UpComingService() {
         {data?.services
           ?.filter((item) => item?.status === "upcoming")
           .map((service, idx) => (
-            <Col key={idx} xs={24} sm={12} md={8}>
+            <Col
+              key={idx}
+              xs={24}
+              sm={12}
+              md={8}
+              style={{ maxWidth: "20rem", margin: "0 auto" }}
+            >
               <Card
                 hoverable
-                style={{ margin: "0 auto", maxWidth: "20rem", padding: "3em" }}
+                style={{ padding: "2em" }}
                 cover={
                   <Image
                     src={upcoming}
