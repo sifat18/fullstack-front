@@ -1,21 +1,10 @@
-"use client";
-const { Header } = Layout;
-import {
-  MenuOutlined,
-  PhoneOutlined,
-  DashboardOutlined,
-  LoginOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
 import logo from "../assets/output.png";
 import Image from "next/image";
-import { Avatar, Layout, Menu } from "antd";
+import { Menu } from "antd";
 import Link from "next/link";
-import { getUserInfo, isLoggedIn, removeUserInfo } from "@/helpers/authHelper";
+import { getUserInfo, removeUserInfo } from "@/helpers/authHelper";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-const { SubMenu } = Menu;
 const HeaderPage = () => {
   const [menuActive, setMenuActive] = useState(false);
 
