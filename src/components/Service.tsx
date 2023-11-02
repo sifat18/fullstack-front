@@ -84,7 +84,7 @@ const Service = () => {
               xs={24}
               sm={12}
               md={8}
-              style={{ maxWidth: "20rem", margin: "0 5em" }}
+              style={{ maxWidth: "20rem", margin: "1em 3.5em" }}
             >
               <Card
                 hoverable
