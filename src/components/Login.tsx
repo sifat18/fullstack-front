@@ -51,6 +51,8 @@ const LoginPage = () => {
         <h1
           style={{
             margin: "15px 0px",
+            fontFamily: "Grandstander, cursive",
+            fontSize: "1.2rem",
           }}
         >
           First login your account
@@ -64,6 +66,11 @@ const LoginPage = () => {
                 size="large"
                 label="User Email"
                 required
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "1rem",
+                  color: "#35353F",
+                }}
               />
             </div>
             <div
@@ -77,13 +84,23 @@ const LoginPage = () => {
                 size="large"
                 label="User Password"
                 required
+                labelStyle={{
+                  fontFamily: "Inter, sans-serif",
+                  fontSize: "1rem",
+                  color: "#35353F",
+                }}
               />
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Button
                 type="primary"
                 htmlType="submit"
-                style={{ width: "100%", height: "2.5rem" }}
+                style={{
+                  width: "100%",
+                  height: "2.5rem",
+                  fontSize: "1.2rem",
+                  fontFamily: "Inter,sans-serif",
+                }}
               >
                 Login
               </Button>

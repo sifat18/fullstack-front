@@ -18,6 +18,7 @@ import {
   LockOutlined,
 } from "@ant-design/icons";
 import { useCreateUserMutation } from "@/redux/api/userApi";
+import Title from "antd/es/typography/Title";
 type FormValues = {
   email: string;
   password: string;
@@ -58,13 +59,29 @@ const RegisterPage = () => {
         <h1
           style={{
             margin: "15px 0px",
+            fontFamily: "Inter, sans-serif",
+            fontSize: "1.2rem",
+            textAlign: "center",
           }}
         >
           First Register your account
         </h1>
         <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
           <Col>
-            <Card title="User Registration">
+            <Card
+              title={
+                <Title
+                  style={{
+                    fontFamily: "Grandstander, cursive",
+                    fontSize: "1rem",
+                    // color: "#21B7E2",
+                  }}
+                  level={2}
+                >
+                  Create your account
+                </Title>
+              }
+            >
               <Form
                 submitHandler={onSubmit}
                 resolver={yupResolver(registerSchema)}
@@ -74,36 +91,56 @@ const RegisterPage = () => {
                   name="name.firstName"
                   type="text"
                   size="large"
-                  label="User FirstName"
+                  label="First Name"
                   required
                   style={{ marginTop: "0.5em", marginBottom: "1em" }}
+                  labelStyle={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.9rem",
+                    color: "#35353F",
+                  }}
                 />
                 <UserOutlined />
                 <FormInput
                   name="name.lastName"
                   type="text"
                   size="large"
-                  label="User LastName"
+                  label="Last Name"
                   required
                   style={{ marginBottom: "1em" }}
+                  labelStyle={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.9rem",
+                    color: "#35353F",
+                  }}
                 />
                 <MailOutlined />
                 <FormInput
                   name="email"
                   type="email"
                   size="large"
-                  label="User Email"
+                  label="Email"
                   placeholder="Email"
                   style={{ marginBottom: "1em" }}
+                  labelStyle={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.9rem",
+                    color: "#35353F",
+                  }}
                 />
                 <LockOutlined />
                 <FormInput
                   name="password"
                   type="password"
                   size="large"
-                  label="User Password"
+                  label="Password"
                   placeholder="Password"
                   style={{ marginBottom: "1em" }}
+                  labelStyle={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.9rem",
+                    color: "#35353F",
+                  }}
                 />
                 <PhoneOutlined />
                 <FormInput
@@ -113,12 +150,22 @@ const RegisterPage = () => {
                   label="Phone Number"
                   placeholder="Phone Number"
                   style={{ marginBottom: "1em" }}
+                  labelStyle={{
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "0.9rem",
+                    color: "#35353F",
+                  }}
                 />
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <Button
                     type="primary"
                     htmlType="submit"
-                    style={{ width: "100%", height: "2.5rem" }}
+                    style={{
+                      width: "100%",
+                      height: "2.5rem",
+                      fontFamily: "Inter,sans-serif",
+                      fontSize: "1rem",
+                    }}
                   >
                     Register
                   </Button>
