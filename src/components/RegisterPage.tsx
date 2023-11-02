@@ -62,6 +62,7 @@ const RegisterPage = () => {
             fontFamily: "Inter, sans-serif",
             fontSize: "1.2rem",
             textAlign: "center",
+            color: "black",
           }}
         >
           First Register your account

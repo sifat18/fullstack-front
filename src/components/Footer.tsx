@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import logo from "../assets/Bubbles (1).png";
-import logo2 from "../assets/Bubbles.png";
+import foot1 from "../assets/Bub.png";
+import foot2 from "../assets/Bubbles.png";
 import {
   FacebookFilled,
   TwitterCircleFilled,
@@ -15,14 +15,14 @@ const Footer = () => {
       <div className="footer-image">
         {/* <div className="logo"> */}
         <Image
-          src={logo}
+          src={foot1}
           alt=""
           style={{
             transform: "rotate(275.64deg)",
           }}
         ></Image>
         <Image
-          src={logo2}
+          src={foot2}
           alt=""
           style={{
             display: "inline-block",

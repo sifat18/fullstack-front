@@ -53,6 +53,7 @@ const LoginPage = () => {
             margin: "15px 0px",
             fontFamily: "Grandstander, cursive",
             fontSize: "1.2rem",
+            color: "black",
           }}
         >
           First login to your account
