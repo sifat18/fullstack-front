@@ -17,6 +17,7 @@ import {
   useCreateReviewMutation,
 } from "@/redux/api/userApi";
 import Title from "antd/es/typography/Title";
+import SkeletonLoader from "./SkeletonLoader";
 const { Meta } = Card;
 const Service = () => {
   const { role, _id } = getUserInfo() as any;
@@ -74,139 +75,143 @@ const Service = () => {
         Services
       </h2>
       <h2 style={contentStyle}>Services & Packages</h2>
-
-      <Row align="middle" style={{ margin: "0 auto" }}>
-        {data?.services
-          ?.filter((item) => item?.status === "active")
-          .map((service, idx) => (
-            <Col
-              key={idx}
-              xs={24}
-              sm={12}
-              md={8}
-              style={{ maxWidth: "20rem", margin: "1em 3.5em" }}
-            >
-              <Card
-                hoverable
-                // style={{ margin: "0 2em" }}
-                cover={
-                  <Image
-                    src={Pic}
-                    alt=""
-                    style={{
-                      objectFit: "cover",
-                      height: "200px",
-                      // width: 100,
-                    }}
-                  ></Image>
-                }
+      {data?.services!?.length > 0 ? (
+        <Row align="middle" style={{ margin: "0 auto" }}>
+          {data?.services
+            ?.filter((item) => item?.status === "active")
+            .map((service, idx) => (
+              <Col
+                key={idx}
+                xs={24}
+                sm={12}
+                md={8}
+                style={{ maxWidth: "20rem", margin: "1em 3.5em" }}
               >
-                {" "}
-                <Meta
-                  title={
-                    <Title
+                <Card
+                  hoverable
+                  // style={{ margin: "0 2em" }}
+                  cover={
+                    <Image
+                      src={Pic}
+                      alt=""
                       style={{
-                        fontFamily: "Grandstander, cursive",
-                        fontSize: "1.5rem",
-                        color: "#21B7E2",
+                        objectFit: "cover",
+                        height: "200px",
+                        // width: 100,
                       }}
-                      level={2}
-                    >
-                      {service?.name}
-                    </Title>
+                    ></Image>
                   }
-                  // description={service?.description?.slice(0, 50)}
-                />
-                {/* <p>{service?.name}</p> */}
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "1rem",
-                    color: "#35353F",
-                    fontWeight: "500",
-                  }}
                 >
-                  {service?.description?.slice(0, 50)}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.8rem",
-                    color: "#35353F",
-                    margin: "1em 0",
-                  }}
-                >
-                  First Come First Service, No early bookings. For Each Day you
-                  have to book us to avail our services
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.8rem",
-                    color: "#35353F",
-                    margin: "1em 0",
-                  }}
-                >
-                  Price- {service?.price}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.8rem",
-                    color: "#35353F",
-                    marginBottom: "1.2em",
-                  }}
-                >
-                  Service- {service?.serviceType}
-                </p>
-                {role ? (
-                  <>
-                    <Button
-                      className="extra"
-                      style={{
-                        // backgroundColor: "#00334C",
+                  {" "}
+                  <Meta
+                    title={
+                      <Title
+                        style={{
+                          fontFamily: "Grandstander, cursive",
+                          fontSize: "1.5rem",
+                          color: "#21B7E2",
+                        }}
+                        level={2}
+                      >
+                        {service?.name}
+                      </Title>
+                    }
+                    // description={service?.description?.slice(0, 50)}
+                  />
+                  {/* <p>{service?.name}</p> */}
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "1rem",
+                      color: "#35353F",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {service?.description?.slice(0, 50)}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.8rem",
+                      color: "#35353F",
+                      margin: "1em 0",
+                    }}
+                  >
+                    First Come First Service, No early bookings. For Each Day
+                    you have to book us to avail our services
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.8rem",
+                      color: "#35353F",
+                      margin: "1em 0",
+                    }}
+                  >
+                    Price- {service?.price}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.8rem",
+                      color: "#35353F",
+                      marginBottom: "1.2em",
+                    }}
+                  >
+                    Service- {service?.serviceType}
+                  </p>
+                  {role ? (
+                    <>
+                      <Button
+                        className="extra"
+                        style={{
+                          // backgroundColor: "#00334C",
 
-                        fontFamily: "Rasa, serif",
-                        fontSize: "1rem",
-                      }}
-                      onClick={() => {
-                        setSingleData(service);
-                        setIsModalOpen(true);
-                      }}
-                    >
-                      Review Us
-                    </Button>
-                    <Button
-                      style={{
-                        marginLeft: "2em",
-                        fontFamily: "Rasa, serif",
-                        fontSize: "1rem",
-                      }}
-                      type="primary"
-                      className="extra"
-                      onClick={() => {
-                        // setIsModalOpen(true);
-                        createOrder({
-                          services: (service as any)?._id,
-                          client: _id,
-                          status: "pending",
-                        }).then((res) => {
-                          if ((res as any)?.data) {
-                            message.success("Service Booked");
-                          } else {
-                            message.error("Something went wrong");
-                          }
-                        });
-                      }}
-                    >
-                      Book Today
-                    </Button>
-                  </>
-                ) : null}
-              </Card>
-            </Col>
-          ))}
-      </Row>
+                          fontFamily: "Rasa, serif",
+                          fontSize: "1rem",
+                        }}
+                        onClick={() => {
+                          setSingleData(service);
+                          setIsModalOpen(true);
+                        }}
+                      >
+                        Review Us
+                      </Button>
+                      <Button
+                        style={{
+                          marginLeft: "2em",
+                          fontFamily: "Rasa, serif",
+                          fontSize: "1rem",
+                        }}
+                        type="primary"
+                        className="extra"
+                        onClick={() => {
+                          // setIsModalOpen(true);
+                          createOrder({
+                            services: (service as any)?._id,
+                            client: _id,
+                            status: "pending",
+                          }).then((res) => {
+                            if ((res as any)?.data) {
+                              message.success("Service Booked");
+                            } else {
+                              message.error("Something went wrong");
+                            }
+                          });
+                        }}
+                      >
+                        Book Today
+                      </Button>
+                    </>
+                  ) : null}
+                </Card>
+              </Col>
+            ))}
+        </Row>
+      ) : (
+        <SkeletonLoader />
+      )}
+      {/* Modal */}
       <Modal
         title={
           <Title
