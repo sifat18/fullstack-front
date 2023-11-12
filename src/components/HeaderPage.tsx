@@ -1,11 +1,13 @@
+"use client";
 import logo from "../assets/output.png";
 import Image from "next/image";
 import Link from "next/link";
 import { getUserInfo, removeUserInfo } from "@/helpers/authHelper";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const HeaderPage = () => {
   const [menuActive, setMenuActive] = useState(false);
+  const [first, setfirst] = useState("");
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -17,6 +19,10 @@ const HeaderPage = () => {
     router.push("/login");
   };
   const { role } = getUserInfo() as any;
+  useEffect(() => {
+    setfirst(role);
+  }, [role]);
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -42,12 +48,12 @@ const HeaderPage = () => {
         <Link href={"/"}>
           <li>Contact</li>
         </Link>
-        {role ? (
+        {first ? (
           <Link href={"/profile"}>
             <li>Dashboard</li>
           </Link>
         ) : null}
-        {role ? (
+        {first ? (
           <li style={{ cursor: "pointer" }} onClick={logout}>
             Logout
           </li>
@@ -56,7 +62,7 @@ const HeaderPage = () => {
             <li>Login</li>
           </Link>
         )}
-        {!role ? (
+        {!first ? (
           <Link href={"/register"}>
             <li>Register</li>
           </Link>

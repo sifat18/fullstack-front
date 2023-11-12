@@ -3,11 +3,15 @@ import { getUserInfo } from "@/helpers/authHelper";
 import { Card, Col, Row } from "antd";
 import Meta from "antd/es/card/Meta";
 import Title from "antd/es/typography/Title";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SkeletonLoader = ({ btn = true }: { btn?: boolean }) => {
   const { role, _id } = getUserInfo() as any;
+  const [first, setfirst] = useState("");
 
+  useEffect(() => {
+    setfirst(role);
+  }, [role]);
   return (
     <Row className="demmo" align="middle" style={{ margin: "0 auto" }}>
       {[1, 2, 3].map((service, idx) => (
@@ -67,7 +71,7 @@ const SkeletonLoader = ({ btn = true }: { btn?: boolean }) => {
               style={{ margin: "2em 0.5em " }}
               className="skeleton skeleton-info"
             ></p>
-            {role && btn ? (
+            {first && btn ? (
               <div style={{ display: "flex" }}>
                 <div
                   className="skeleton"
