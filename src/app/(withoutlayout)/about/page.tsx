@@ -8,11 +8,12 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import about from "../../../assets/about.jpg";
+import { relative } from "path";
 const About = () => {
   return (
     <Row align="middle" gutter={[16, 16]} style={{ margin: "2em 0" }}>
       <Col xs={24} md={12}>
-        <Card style={{}}>
+        <Card>
           <Divider />
           <Typography>
             <Title
@@ -112,14 +113,22 @@ const About = () => {
           </Typography>
         </Card>
       </Col>
-      <Col xs={24} md={12}>
+      <Col
+        xs={24}
+        md={12}
+        style={{
+          position: "relative",
+          width: "100%",
+          // maxWidth: "700px",
+          aspectRatio: "78/50",
+          padding: "2rem auto",
+        }}
+      >
         <Image
           src={about}
           alt=""
-          style={{
-            objectFit: "cover",
-            width: "100%",
-          }}
+          fill
+          sizes="(max-width:768px) 100vw, 700px"
         ></Image>
       </Col>
     </Row>

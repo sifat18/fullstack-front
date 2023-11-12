@@ -367,6 +367,14 @@ a {
   max-width: 500px;
   margin: -12em 5em 0 5em;
 }
+@media (min-width: 1600px) {
+  .imghero {
+    /* display: block; */
+    margin: -8em 0 0 26em;
+    /* padding: 1em 0em; */
+    /* max-height: 90rem; */
+  }
+}
 @media (max-width: 768px) {
   .imghero {
     display: none;
@@ -390,6 +398,7 @@ a {
     margin: 0 2em;
   }
 }
+
 .learn-btn {
   margin: 0 5em;
 }
