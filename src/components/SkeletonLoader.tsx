@@ -5,7 +5,7 @@ import Meta from "antd/es/card/Meta";
 import Title from "antd/es/typography/Title";
 import React from "react";
 
-const SkeletonLoader = () => {
+const SkeletonLoader = ({ btn = true }: { btn?: boolean }) => {
   const { role, _id } = getUserInfo() as any;
 
   return (
@@ -67,7 +67,7 @@ const SkeletonLoader = () => {
               style={{ margin: "2em 0.5em " }}
               className="skeleton skeleton-info"
             ></p>
-            {role ? (
+            {role && btn ? (
               <div style={{ display: "flex" }}>
                 <div
                   className="skeleton"

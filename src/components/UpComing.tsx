@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Col, Divider, Row } from "antd";
 import { useServicesQuery } from "@/redux/api/serviceApi";
 import Title from "antd/es/typography/Title";
+import SkeletonLoader from "./SkeletonLoader";
 const { Meta } = Card;
 export default function UpComingService() {
   const { data, isLoading } = useServicesQuery({});
@@ -35,65 +36,68 @@ export default function UpComingService() {
         New Arrivals
       </h2>
       <h2 style={contentStyle}>Up Coming Services</h2>
-
-      <Row align="middle" gutter={[16, 16]} style={{ margin: "0 2em" }}>
-        {data?.services
-          ?.filter((item) => item?.status === "upcoming")
-          .map((service, idx) => (
-            <Col
-              key={idx}
-              xs={24}
-              sm={12}
-              md={8}
-              style={{ maxWidth: "20rem", margin: "0 auto" }}
-            >
-              <Card
-                hoverable
-                style={{ padding: "2em" }}
-                cover={
-                  <Image
-                    src={upcoming}
-                    alt=""
-                    style={{
-                      objectFit: "cover",
-                      height: "200px",
-                      // width: 100,
-                    }}
-                  ></Image>
-                }
+      {data?.services!?.length > 0 ? (
+        <Row align="middle" gutter={[16, 16]} style={{ margin: "0 2em" }}>
+          {data?.services
+            ?.filter((item) => item?.status === "upcoming")
+            .map((service, idx) => (
+              <Col
+                key={idx}
+                xs={24}
+                sm={12}
+                md={8}
+                style={{ maxWidth: "20rem", margin: "0 auto" }}
               >
-                {" "}
-                <Meta
-                  title={
-                    <Title
+                <Card
+                  hoverable
+                  style={{ padding: "2em" }}
+                  cover={
+                    <Image
+                      src={upcoming}
+                      alt=""
                       style={{
-                        fontFamily: "Grandstander, cursive",
-                        fontSize: "1.2rem",
-                        color: "#21B7E2",
-                        textAlign: "left",
+                        objectFit: "cover",
+                        height: "200px",
+                        // width: 100,
                       }}
-                      level={2}
-                    >
-                      {service?.name}
-                    </Title>
+                    ></Image>
                   }
-                  // description={service?.description?.slice(0.5)}
-                />
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "0.7rem",
-                    color: "#35353F",
-                    fontWeight: "500",
-                    textAlign: "left",
-                  }}
                 >
-                  {service?.description?.slice(0.5)}
-                </p>
-              </Card>
-            </Col>
-          ))}
-      </Row>
+                  {" "}
+                  <Meta
+                    title={
+                      <Title
+                        style={{
+                          fontFamily: "Grandstander, cursive",
+                          fontSize: "1.2rem",
+                          color: "#21B7E2",
+                          textAlign: "left",
+                        }}
+                        level={2}
+                      >
+                        {service?.name}
+                      </Title>
+                    }
+                    // description={service?.description?.slice(0.5)}
+                  />
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "0.7rem",
+                      color: "#35353F",
+                      fontWeight: "500",
+                      textAlign: "left",
+                    }}
+                  >
+                    {service?.description?.slice(0.5)}
+                  </p>
+                </Card>
+              </Col>
+            ))}
+        </Row>
+      ) : (
+        <SkeletonLoader btn={false} />
+      )}
     </div>
   );
 }
